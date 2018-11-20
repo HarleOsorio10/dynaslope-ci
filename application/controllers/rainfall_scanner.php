@@ -52,7 +52,7 @@ class Rainfall_scanner extends CI_Controller {
 	}
 
 	public function getSitesWithRegions () {
-		$sites = json_encode($this->sites_model->getSitesWithRegions());
+		$sites = $this->sites_model->getSitesWithRegions();
 		echo json_encode($sites);
 	}
 
@@ -66,7 +66,7 @@ class Rainfall_scanner extends CI_Controller {
             $file_path = "C:/xampp/updews-pycodes/web_plots/";
         } elseif (strpos($os, "UBUNTU") !== false || strpos($os, "Linux") !== false) {
             $python_path = "/home/ubuntu/miniconda2/bin/python";
-            // $python_path = "/home/ubuntu/anaconda2/bin/python";
+            // $python_path = "/home/swat/anaconda2/bin/python";
             $file_path = "/var/www/updews-pycodes/web_plots/";
         } else {
             throw new Exception("Unknown OS for execution... Script discontinued...");

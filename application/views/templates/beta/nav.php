@@ -6,12 +6,12 @@
         </div>
 
         <div class="col-sm-4 text-right">
-            <span><img id="dynaslope-logo" src="/images/dynaslope-logo.png" /></span>
+            <span><img id="dynaslope-logo" src="/images/beta/dynaslope-logo.png" /></span>
             <span class="nav-general-text text-center">
                 <div>IMPLEMENTED</div>
                 <div>AND FUNDED BY</div>
             </span>
-            <span><img id="dost-phivolcs-logo" src="/images/dost-phivolcs-logo.png" /></span>
+            <span><img id="dost-phivolcs-logo" src="/images/beta/dost-phivolcs-logo.png" /></span>
         </div>
     </div>
 </div>
@@ -48,8 +48,8 @@
 		                    <a href="<?php echo base_url(); ?>analysis/site_analysis">Integrated Site Analysis</a>
 		                    <a href="<?php echo base_url(); ?>analysis/sensor_overview">Dataloggers and Sensors Overview</a>
 		                    <a href="<?php echo base_url(); ?>analysis/rainfall_summary">Rainfall Summary</a>
-		                    <a href="<?php echo base_url(); ?>analysis/surficial">Surficial Markers</a>
-		                    <a href="<?php echo base_url(); ?>analysis/manifestations">Manifestations of Movement</a>
+		                    <a href="<?php echo base_url(); ?>analysis/surficial">Surficial Markers Info</a>
+		                    <a href="<?php echo base_url(); ?>analysis/manifestations">Manifestations of Movement Table</a>
 		                    <hr class="divider" />
 		                    <span class="dropdown-header">Communications</span>
 		                    <a href="<?php echo base_url(); ?>communications/responsetracker">Response Tracker</a>
