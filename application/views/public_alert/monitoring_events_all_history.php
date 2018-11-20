@@ -37,7 +37,7 @@
 				<div class="form-group"> <!-- has-success -->
 					<label class="control-label" for="start-time">Start Time Filter</label>
                     <div class="input-group date datetime">
-                        <input type="text" class="form-control" id="start-time" name="start-time" placeholder="Enter timestamp" aria-required="true" aria-invalid="false"><span class="glyphicon glyphicon-ok form-control-feedback" style="top:0px; right:37px;"></span>
+                        <input type="text" class="form-control" id="start-time" name="start-time" placeholder="Enter timestamp" aria-required="true" aria-invalid="false">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -46,7 +46,7 @@
 				<div class="form-group"> <!-- has-success -->
 					<label class="control-label" for="start-time">End Time Filter</label>
                     <div class="input-group date datetime">
-                        <input type="text" class="form-control" id="end-time" name="end-time" placeholder="Enter timestamp" aria-required="true" aria-invalid="false"><span class="glyphicon glyphicon-ok form-control-feedback" style="top:0px; right:37px;"></span>
+                        <input type="text" class="form-control" id="end-time" name="end-time" placeholder="Enter timestamp" aria-required="true" aria-invalid="false">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
