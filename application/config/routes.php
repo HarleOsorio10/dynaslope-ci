@@ -158,6 +158,7 @@ $route['qa_tally/saved_settings'] = "qa_tally/getDailyRecordForEvent";
 $route['qa_tally/event_default'] = "qa_tally/getEventDefaultData";
 $route['qa_tally/extended_default'] = "qa_tally/getExtendedDefaultData";
 $route['qa_tally/get_default_recipients'] = "qa_tally/getDefaultRecipients";
+$route['qa_tally/save_settings'] = "qa_tally/saveSettings";
 
 $route['site_info/index'] = "site_info/index";
 

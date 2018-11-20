@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-center">
-                <div id="page-header">QUALITY ASSURANCE | <small>TALLY PAGE<small></div>
+                <div id="page-header">QUALITY ASSURANCE <small>TALLY PAGE</small></div>
             </div>
         </div>
         <div class="row">

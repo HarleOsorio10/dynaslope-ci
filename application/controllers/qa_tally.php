@@ -34,22 +34,6 @@ class Qa_tally extends CI_Controller {
 		}
 	}
 
-	public function getAllSitesOnEvent() {
-
-	}
-
-	public function getAllSitesOnExtended() {
-
-	}
-
-	public function getAllRecipientsForEventSites() {
-
-	}
-
-	public function getAllRecipientsForExtendedSites() {
-
-	}
-
 	public function addActualSentEWIforEvent() {
 		$result = $this->qa_tally_model->getActualEvent();
 	}
@@ -60,10 +44,10 @@ class Qa_tally extends CI_Controller {
 
 	public function getDailyRecordForEvent() {
 		$this->switchToCommons();
-		$categories = ['on-going','extended'];
+		$table_source = ['qa_tally_event', 'qa_tally_extended'];
 		$setting_container = [];
-		foreach ($categories as $category) {
-			$result = $this->qa_tally_model->getRecordForToday($category);
+		foreach ($table_source as $table) {
+			$result = $this->qa_tally_model->getRecordForToday($table);
 			array_push($setting_container, [$result]);
 		}
 		$this->switchToSenslope();
@@ -101,7 +85,16 @@ class Qa_tally extends CI_Controller {
 	}
 
 	public function saveSettings() {
-
+		$data = $_POST;
+		$this->switchToCommons();
+		if ($data['event_category'] == "event") {
+			$table_source = "qa_tally_event";
+		} else if ($data['event_category'] = "extended") {
+			$table_source = "qa_tally_extended";
+		}
+		$result = $this->qa_tally_model->insertSettingsForTally($table_source,$data);
+		$this->switchToSenslope();
+		print json_encode($result);
 	}
 }
 ?>
