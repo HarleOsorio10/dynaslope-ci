@@ -55,10 +55,10 @@
 				<div class="form-group"> <!-- has-success -->
                     <label class="control-label" for="alert-level-filter">Alert Level</label>
                     <select class="form-control" id="alert-level" name="alert-level-filter" aria-required="true">
-                        <option value="ALL">ALL ALERT LEVELS</option>
-                        <option value="A1">ALERT 1</option>
-                        <option value="A2">ALERT 2</option>
-                        <option value="A3">ALERT 3</option>
+                        <option value="all">All</option>
+                        <option value="A1">Alert 1</option>
+                        <option value="A2">Alert 2</option>
+                        <option value="A3">Alert 3</option>
                     </select>
                 </div> <!-- analysis-plot-btn -->
  				<div class="row hideable">
@@ -73,6 +73,16 @@
 		</div>
 	</div>
 
+	<div class="col-md-5">
+		<div class="panel panel-primary">
+			<div class="panel-heading"><strong>ALERT SUMMARY BASED ON DATE SPECIFIED</strong></div>
+			<div class="panel-body chart-div">
+				<!-- <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div> -->
+				<div id="pie-chart-container"></div>
+			</div>
+		</div>
+	</div>
+
 	<div class="col-md-4">
 		<div class="panel panel-primary">
 			<div class="panel-heading"><strong>EVENT COUNT</strong></div>
@@ -80,16 +90,6 @@
 				<strong><a href="#history-table" style="color: inherit; text-decoration: inherit;"><span class="site-count" id="site-count-per-alert">-</span></a>
 				<br/>
 				<span class="site-count-label" id="event-count-header"></span></strong>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-md-5">
-		<div class="panel panel-primary">
-			<div class="panel-heading"><strong>ALERT SUMMARY</strong></div>
-			<div class="panel-body chart-div">
-				<!-- <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div> -->
-				<div id="pie-chart-container"></div>
 			</div>
 		</div>
 	</div>

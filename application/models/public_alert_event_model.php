@@ -79,14 +79,10 @@ class Public_Alert_Event_Model extends CI_Model
 		return $result->row()->status;
 	}	
 
+	/**
+	 * 	@author John Louie Nepomuceno
+	 **/
 	public function getEventsPerAlertLevelHistory($alert_level, $start_time, $end_time) {
-		// $this->db->select("event_id, site_code, trigger_type, internal_alert_level, timestamp");
-				// "AND
-				// 	par.internal_alert_level LIKE 'A2%'
-				// -- AND
-				// -- 	par.data_timestamp >= '2018-01-01 00:00:00'
-				// -- AND 
-				// -- 	par.data_timestamp < '2018-07-13 12:00:00'"
 		$filter = "";
 		if($alert_level != null && $alert_level != "" && $alert_level != "ALL") {
 			$filter = $filter . " AND par.internal_alert_level LIKE '" . $alert_level . "%'";
@@ -121,19 +117,22 @@ class Public_Alert_Event_Model extends CI_Model
 		                WHERE par.event_id = par2.event_id AND par2.internal_alert_level NOT IN ('ND','A0')
 		            )";
 		$final_sql = $sql . $filter;
-		// var_dump($final_sql);
 		$query = $this->db->query($final_sql); 
 		return $query->result();
 	}
 
+	/**
+	 *	@author John Louie Nepomuceno
+	 **/
 	public function getEventsBasedOnDate($start_time, $end_time) {
+		$filter = "";
 		if($start_time != null && $start_time != "" && $end_time != null && $end_time != "") {
 			$filter = $filter . " AND par.data_timestamp >= '" . $start_time . "'";
 			$filter = $filter ." AND par.data_timestamp < '" . $end_time . "'";
 		}
 
 		$sql = "SELECT 
-					sites.site_code, par.*
+					sites.site_code, par.*, LEFT(par.internal_alert_level, 2) AS public_alert_level
 				FROM 
 					public_alert_release AS par
 				RIGHT JOIN 
@@ -157,8 +156,7 @@ class Public_Alert_Event_Model extends CI_Model
 		                WHERE par.event_id = par2.event_id AND par2.internal_alert_level NOT IN ('ND','A0')
 		            )";
 		$final_sql = $sql . $filter;
-		var_dump($final_sql);
 		$query = $this->db->query($final_sql); 
-		return $query->result();		
+		return $query->result();	
 	}
 }

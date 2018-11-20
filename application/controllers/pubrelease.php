@@ -702,13 +702,14 @@ class Pubrelease extends CI_Controller {
 	 * @author John Louie Nepomuceno
 	 **/	
 	public function getEventsPerAlertLevelHistory($alert_level, $start_time, $end_time) {
-		$result = $this->public_alert_event_model->getEventsPerAlertLevelHistory($alert_level, $start_time, $end_time);
-		for ($counter = 0; $counter < sizeof($result); $counter++) {
-			$result[$counter] = (array) $result[$counter];
-		}
-		$final_result = $result;		
-		echo json_encode($final_result);
+		$result = $this->public_alert_event_model->getEventsPerAlertLevelHistory($alert_level, $start_time, $end_time);		
+		echo json_encode($result);
 	}
+
+	public function getEventsBasedOnDate($start_time, $end_time) {
+		$result = $this->public_alert_event_model->getEventsBasedOnDate($start_time, $end_time);
+		echo json_encode($result);
+	}		
 }
 
 /* End of file pubrelease.php */
