@@ -13,15 +13,15 @@
 
 		public function index()
 		{
-			$data['title'] = 'DEWS-L Monitoring Issues And Reminders Page';
+			$data['title'] = 'Issues And Reminders - Site Alert Monitoring';
 			$data['first_name'] = $this->session->userdata('first_name');
 			$data['last_name'] = $this->session->userdata('last_name');
 			$data['user_id'] = $this->session->userdata("id");
 
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/nav');
+			$this->load->view('templates/beta/header', $data);
+			$this->load->view('templates/beta/nav');
 			$this->load->view('public_alert/issues_and_reminders_page', $data);
-			$this->load->view('templates/footer');
+			$this->load->view('templates/beta/footer');
 		}
 
 		public function modal()

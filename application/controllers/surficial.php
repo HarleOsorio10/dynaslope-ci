@@ -10,7 +10,7 @@ class Surficial extends CI_Controller {
 	}
 
 	public function index () {
-        $data["title"] = "Surficial Markers Page";
+        $data["title"] = "Surficial Markers Info - Analysis";
 
         $data['user_id'] = $this->session->userdata("id");
         $data['first_name'] = $this->session->userdata('first_name');

@@ -18,7 +18,7 @@ class Manifestations extends CI_Controller
 	{
 		$this->is_logged_in();
 
-		$data['title'] = 'DEWS-L Manifestations of Movement Page';
+		$data['title'] = 'Manifestations of Movement Table - Analysis';
 		$data['first_name'] = $this->session->userdata('first_name');
 		$data['last_name'] = $this->session->userdata('last_name');
 		$data['user_id'] = $this->session->userdata("id");
@@ -33,7 +33,7 @@ class Manifestations extends CI_Controller
 	{
 		$this->is_logged_in();
 
-		$data['title'] = 'DEWS-L Manifestations of Movement Page';
+		$data['title'] = 'Site Manifestations of Movement - Analysis';
 		$data['first_name'] = $this->session->userdata('first_name');
 		$data['last_name'] = $this->session->userdata('last_name');
 		$data['user_id'] = $this->session->userdata("id");
