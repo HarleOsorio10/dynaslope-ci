@@ -56,11 +56,13 @@ class Qa_tally extends CI_Controller {
 
 	public function getEventDefaultData() {
 		$result = $this->qa_tally_model->getDefaultRecordForToday("on-going");
+		return $result;
 		print json_encode($result);
 	}
 
 	public function getExtendedDefaultData() {
 		$result = $this->qa_tally_model->getDefaultRecordForToday("extended");
+		return $result;
 		print json_encode($result);
 	}
 
@@ -96,5 +98,26 @@ class Qa_tally extends CI_Controller {
 		$this->switchToSenslope();
 		print json_encode($result);
 	}
+
+	public function updateTallyCountEvent() {
+		$this->switchToCommons();
+		$data = $_POST;
+		$table_source = "qa_tally_event";
+		$previous_data = $this->qa_tally_model->getRecordViaEventID($table_source, $data['event_id']);
+		$temp = $previous_data[0]->ewi_actual + $data['sent_count'];
+		$update_tally_record = $this->qa_tally_model->updateTallyRecord($table_source, $data['event_id'], $temp, $data['data_timestamp']);
+		$this->switchToSenslope();
+	}
+
+	public function updateTallyCountExtended() {
+		$this->switchToCommons();
+		$data = $_POST;
+		$table_source = "qa_tally_extended";
+		$previous_data = $this->qa_tally_model->getRecordViaEventID($table_source, $data['site_id']);
+		var_dump($previous_data);
+		var_dump($data);
+		$this->switchToSenslope();
+	}
+
 }
 ?>

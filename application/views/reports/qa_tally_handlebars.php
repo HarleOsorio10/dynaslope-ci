@@ -13,6 +13,7 @@
       </div>
         <div id="{{site_code}}" class="panel-collapse collapse">
             <div class="panel-body">
+                <small>
                 <div class="col-sm-4">
                     <div class="text-center"><strong>Expected Tally of Outgoing Messages</strong></div>
                     <hr>
@@ -20,10 +21,10 @@
                         <span>Expected EWI messages to be sent : <strong>{{ewi_expected}}</strong></span>
                     </div>
                     <div>
-                        <span>Expected Ground Measurement to be sent : <strong>{{ewi_expected}}</strong></span>
+                        <span>Expected Ground Measurement to be sent : <strong>(INSERT TOTAL HERE)</strong></span>
                     </div>
                     <div>
-                        <span>Expected Ground Measurement Reminder to be sent : <strong>{{ewi_expected}}</strong></span>
+                        <span>Expected Ground Measurement Reminder to be sent : <strong>(INSERT TOTAL HERE)</strong></span>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -44,11 +45,12 @@
                     <hr>
                     {{#each recipients as |contact|}}
                         <div class="text-center">
-                            <span><small>{{contact}}</small></span>
+                            <span>{{contact}}</span>
                         </div>
                     {{/each}}
                 </div>
               </div>
+              </small>
         </div>
     </div>
     {{/each}}
@@ -69,23 +71,43 @@
       </div>
       <div id="{{site_code}}" class="panel-collapse collapse">
           <div class="panel-body">
+            <small>
             <div class="col-sm-4">
                 <div class="text-center"><strong>Expected Tally of Outgoing Messages</strong></div>
                 <hr>
+                <div>
+                    <span>Expected EWI messages to be sent : <strong>{{ewi_expected}}</strong></span>
+                </div>
+                <div>
+                    <span>Expected Ground Measurement to be sent : <strong>(INSERT TOTAL HERE)</strong></span>
+                </div>
+                <div>
+                    <span>Expected Ground Measurement Reminder to be sent : <strong>(INSERT TOTAL HERE)</strong></span>
+                </div>
             </div>
             <div class="col-sm-4">
                 <div class="text-center"><strong>Actual Tally of Outgoing Messages</strong></div>
                 <hr>
+                <div>
+                    <span>Actual EWI messages sent : <strong>{{ewi_actual}}</strong></span>
+                </div>
+                <div>
+                    <span>Actual Ground Measurement sent : <strong>(INSERT TOTAL HERE)</strong></span>
+                </div>
+                <div>
+                    <span>Actual Ground Measurement Reminder sent : <strong>(INSERT TOTAL HERE)</strong></span>
+                </div>
             </div>
             <div class="col-sm-4">
                 <div class="text-center"><strong><u>Default Recipients</u></strong></div>
                 <hr>
                 {{#each recipients as |contact|}}
                     <div class="text-center">
-                        <span><small>{{contact}}</small></span>
+                        <span>{{contact}}</span>
                     </div>
                 {{/each}}
             </div>
+            </small>
           </div>
       </div>
     </div>
