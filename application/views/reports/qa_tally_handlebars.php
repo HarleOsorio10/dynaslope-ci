@@ -7,27 +7,44 @@
                 <span><strong>{{site_name}}</strong></span>
             </div>
             <div class="col-sm-3 text-right">
-                <span>Last update: (TS GOES HERE)</span>
+                <span>Last update: {{last_ts}}</span>
             </div>
         </div>
       </div>
         <div id="{{site_code}}" class="panel-collapse collapse">
             <div class="panel-body">
                 <div class="col-sm-4">
-                    <div style="background-color:lightblue">
-                        <span>EXPECTED SECTION</span>
+                    <div class="text-center"><strong>Expected Tally of Outgoing Messages</strong></div>
+                    <hr>
+                    <div>
+                        <span>Expected EWI messages to be sent : <strong>{{ewi_expected}}</strong></span>
+                    </div>
+                    <div>
+                        <span>Expected Ground Measurement to be sent : <strong>{{ewi_expected}}</strong></span>
+                    </div>
+                    <div>
+                        <span>Expected Ground Measurement Reminder to be sent : <strong>{{ewi_expected}}</strong></span>
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div style="background-color:red">
-                        <span>ACTUAL SECTION</span>
+                    <div class="text-center"><strong>Actual Tally of Outgoing Messages</strong></div>
+                    <hr>
+                    <div>
+                        <span>Actual EWI messages sent : <strong>{{ewi_actual}}</strong></span>
+                    </div>
+                    <div>
+                        <span>Actual Ground Measurement sent : <strong>(INSERT TOTAL HERE)</strong></span>
+                    </div>
+                    <div>
+                        <span>Actual Ground Measurement Reminder sent : <strong>(INSERT TOTAL HERE)</strong></span>
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="text-center"><strong><u>Default Recipients</u></strong></div>
+                    <div class="text-center"><strong>Default Recipients</strong></div>
+                    <hr>
                     {{#each recipients as |contact|}}
                         <div class="text-center">
-                            <span>{{contact}}</span>
+                            <span><small>{{contact}}</small></span>
                         </div>
                     {{/each}}
                 </div>
@@ -46,27 +63,26 @@
                 <span><strong>{{site_name}}</strong></span>
             </div>
             <div class="col-sm-3 text-right">
-                <span>Last update: (TS GOES HERE)</span>
+                <span>Last update: {{last_ts}}</span>
             </div>
         </div>
       </div>
       <div id="{{site_code}}" class="panel-collapse collapse">
           <div class="panel-body">
             <div class="col-sm-4">
-                <div style="background-color:lightblue">
-                    <span>EXPECTED SECTION</span>
-                </div>
+                <div class="text-center"><strong>Expected Tally of Outgoing Messages</strong></div>
+                <hr>
             </div>
             <div class="col-sm-4">
-                <div style="background-color:red">
-                    <span>ACTUAL SECTION</span>
-                </div>
+                <div class="text-center"><strong>Actual Tally of Outgoing Messages</strong></div>
+                <hr>
             </div>
             <div class="col-sm-4">
                 <div class="text-center"><strong><u>Default Recipients</u></strong></div>
+                <hr>
                 {{#each recipients as |contact|}}
                     <div class="text-center">
-                        <span>{{contact}}</span>
+                        <span><small>{{contact}}</small></span>
                     </div>
                 {{/each}}
             </div>
