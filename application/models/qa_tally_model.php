@@ -35,7 +35,7 @@
 		}
 
 		public function insertSettingsForTally($table_source, $tally) {
-			$query = "INSERT INTO ".$table_source." VALUES (0,'".$tally['event_id']."','".$tally['ewi_expected']."','".$tally['ewi_actual']."','".$tally['status']."','".$tally['ts']."',".$tally['site_id'].")";
+			$query = "INSERT INTO ".$table_source." VALUES (0,'".$tally['event_id']."','".$tally['ewi_expected']."','".$tally['ewi_actual']."','".$tally['gndmeas_reminder_expected']."','".$tally['gndmeas_reminder_actual']."','".$tally['status']."','".$tally['ts']."',".$tally['site_id'].")";
 			$result = $this->db->query($query);
 			return $result;
 		}
@@ -51,8 +51,8 @@
 			return $tally_record;
 		}
 
-		public function updateTallyRecord($table_source, $event_id, $count, $ts) {
-			$query = "UPDATE ".$table_source." SET ewi_actual = '".$count."', ts='".$ts."' WHERE event_id = '".$event_id."'";
+		public function updateTallyRecord($table_source, $column ,$event_id, $count, $ts) {
+			$query = "UPDATE ".$table_source." SET ".$column." = '".$count."', ts='".$ts."' WHERE event_id = '".$event_id."'";
 			$result = $this->db->query($query);
 			return $result;
 		}

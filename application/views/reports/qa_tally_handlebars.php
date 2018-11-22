@@ -13,44 +13,46 @@
       </div>
         <div id="{{site_code}}" class="panel-collapse collapse">
             <div class="panel-body">
-                <small>
-                <div class="col-sm-4">
-                    <div class="text-center"><strong>Expected Tally of Outgoing Messages</strong></div>
-                    <hr>
-                    <div>
-                        <span>Expected EWI messages to be sent : <strong>{{ewi_expected}}</strong></span>
-                    </div>
-                    <div>
-                        <span>Expected Ground Measurement to be sent : <strong>(INSERT TOTAL HERE)</strong></span>
-                    </div>
-                    <div>
-                        <span>Expected Ground Measurement Reminder to be sent : <strong>(INSERT TOTAL HERE)</strong></span>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="text-center"><strong>Actual Tally of Outgoing Messages</strong></div>
-                    <hr>
-                    <div>
-                        <span>Actual EWI messages sent : <strong>{{ewi_actual}}</strong></span>
-                    </div>
-                    <div>
-                        <span>Actual Ground Measurement sent : <strong>(INSERT TOTAL HERE)</strong></span>
-                    </div>
-                    <div>
-                        <span>Actual Ground Measurement Reminder sent : <strong>(INSERT TOTAL HERE)</strong></span>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="text-center"><strong>Default Recipients</strong></div>
-                    <hr>
-                    {{#each recipients as |contact|}}
-                        <div class="text-center">
-                            <span>{{contact}}</span>
+                <div class="row">
+                    <small>
+                    <div class="col-sm-4">
+                        <div class="text-center"><strong>Expected Tally of Outgoing Messages</strong></div>
+                        <hr>
+                        <div>
+                            <span>Expected EWI messages to be sent : <strong>{{ewi_expected}}</strong></span>
                         </div>
-                    {{/each}}
+                        <div>
+                            <span>Expected Ground Measurement Reminder to be sent : <strong>{{gndmeas_reminder_expected}}</strong></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="text-center"><strong>Actual Tally of Outgoing Messages</strong></div>
+                        <hr>
+                        <div>
+                            <span>Actual EWI messages sent : <strong>{{ewi_actual}}</strong></span>
+                        </div>
+                        <div>
+                            <span>Actual Ground Measurement Reminder sent : <strong>{{gndmeas_reminder_actual}}</strong></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="text-center"><strong>Default Recipients</strong></div>
+                        <hr>
+                        {{#each recipients as |contact|}}
+                            <div class="text-center">
+                                <span>{{contact}}</span>
+                            </div>
+                        {{/each}}
+                    </div>
+                    </small>
                 </div>
-              </div>
-              </small>
+                <div class="row" style="padding-top:20px; width:100%;">
+                    <div class="col-sm-5 col-sm-offset-2" style="margin-left: 15%;">
+                        <button class="evaluate-event btn btn-info pull-right" value="{{event_id}}">Evaluate</button>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
     {{/each}}
@@ -71,43 +73,47 @@
       </div>
       <div id="{{site_code}}" class="panel-collapse collapse">
           <div class="panel-body">
+            <div class="row">
             <small>
-            <div class="col-sm-4">
-                <div class="text-center"><strong>Expected Tally of Outgoing Messages</strong></div>
-                <hr>
-                <div>
-                    <span>Expected EWI messages to be sent : <strong>{{ewi_expected}}</strong></span>
-                </div>
-                <div>
-                    <span>Expected Ground Measurement to be sent : <strong>(INSERT TOTAL HERE)</strong></span>
-                </div>
-                <div>
-                    <span>Expected Ground Measurement Reminder to be sent : <strong>(INSERT TOTAL HERE)</strong></span>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="text-center"><strong>Actual Tally of Outgoing Messages</strong></div>
-                <hr>
-                <div>
-                    <span>Actual EWI messages sent : <strong>{{ewi_actual}}</strong></span>
-                </div>
-                <div>
-                    <span>Actual Ground Measurement sent : <strong>(INSERT TOTAL HERE)</strong></span>
-                </div>
-                <div>
-                    <span>Actual Ground Measurement Reminder sent : <strong>(INSERT TOTAL HERE)</strong></span>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="text-center"><strong><u>Default Recipients</u></strong></div>
-                <hr>
-                {{#each recipients as |contact|}}
-                    <div class="text-center">
-                        <span>{{contact}}</span>
+                <div class="col-sm-4">
+                    <div class="text-center"><strong>Expected Tally of Outgoing Messages</strong></div>
+                    <hr>
+                    <div>
+                        <span>Expected EWI messages to be sent : <strong>{{ewi_expected}}</strong></span>
                     </div>
-                {{/each}}
+                    <div>
+                        <span>Expected Ground Measurement Reminder to be sent : <strong>{{gndmeas_reminder_expected}}</strong></span>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="text-center"><strong>Actual Tally of Outgoing Messages</strong></div>
+                    <hr>
+                    <div>
+                        <span>Actual EWI messages sent : <strong>{{ewi_actual}}</strong></span>
+                    </div>
+                    <div>
+                        <span>Actual Ground Measurement Reminder sent : <strong>{{gndmeas_reminder_actual}}</strong></span>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="text-center"><strong><u>Default Recipients</u></strong></div>
+                    <hr>
+                    {{#each recipients as |contact|}}
+                        <div class="text-center">
+                            <span>{{contact}}</span>
+                        </div>
+                    {{/each}}
+                </div>
+                </small>
             </div>
-            </small>
+            <div class="row">
+                <div class="row" style="padding-top:20px; width:100%;">
+                    <div class="col-sm-5 col-sm-offset-2" style="margin-left: 15%;">
+                        <button class="btn btn-info pull-right evaluate-extended" value="{{event_id}}">Evaluate</button>
+                    </div>
+                </div>
+            </div>
+            
           </div>
       </div>
     </div>

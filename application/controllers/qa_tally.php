@@ -99,13 +99,33 @@ class Qa_tally extends CI_Controller {
 		print json_encode($result);
 	}
 
-	public function updateTallyCountEvent() {
+	public function updateTallyCount() {
 		$this->switchToCommons();
 		$data = $_POST;
-		$table_source = "qa_tally_event";
-		$previous_data = $this->qa_tally_model->getRecordViaEventID($table_source, $data['event_id']);
-		$temp = $previous_data[0]->ewi_actual + $data['sent_count'];
-		$update_tally_record = $this->qa_tally_model->updateTallyRecord($table_source, $data['event_id'], $temp, $data['data_timestamp']);
+		$table_source = ["qa_tally_event","qa_tally_extended"];
+		switch ($data['category']) {
+			case 'event':
+				$previous_data = $this->qa_tally_model->getRecordViaEventID($table_source[0], $data['event_id']);
+				$temp = $previous_data[0]->ewi_actual + $data['sent_count'];
+				$column = "ewi_actual";
+				$update_tally_record = $this->qa_tally_model->updateTallyRecord($table_source[0], $column, $data['event_id'], $temp, $data['data_timestamp']);
+				break;
+			case 'extended':
+				$previous_data = $this->qa_tally_model->getRecordViaEventID($table_source[1], $data['event_id']);
+				$temp = $previous_data[0]->ewi_actual + $data['sent_count'];
+				$column = "ewi_actual";
+				$update_tally_record = $this->qa_tally_model->updateTallyRecord($table_source[1], $column, $data['event_id'], $temp, $data['data_timestamp']);
+				break;
+			case 'gndmeas_reminder':
+				$temp = $previous_data[0]->gndmeas_reminder_actual + $data['sent_count'];
+				$column = "gndmeas_reminder_actual";
+				break;
+			default:
+				// Nothing to do.
+				break;
+		}
+		
+		var_dump($update_tally_record);
 		$this->switchToSenslope();
 	}
 
