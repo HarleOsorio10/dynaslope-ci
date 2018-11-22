@@ -17,7 +17,6 @@ class Pubrelease extends CI_Controller {
 
 	public function index($page)
 	{
-		// $this->is_logged_in();
 		is_logged_in($this->session->userdata('is_logged_in'));
 
 		$data['user_id'] = $this->session->userdata("id");

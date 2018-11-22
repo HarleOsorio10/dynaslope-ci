@@ -4,11 +4,12 @@ class Responsetracker extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
+		$this->load->helper(array('url', 'account_helper'));
 		$this->load->model('responsetracker_model');
 	}
 
 	public function index() {
-		$this->is_logged_in();
+		is_logged_in($this->session->userdata('is_logged_in'));
 
 		$page = 'Response Tracker';
 		$data['first_name'] = $this->session->userdata('first_name');
@@ -21,17 +22,6 @@ class Responsetracker extends CI_Controller {
 		$this->load->view('templates/beta/nav');
 		$this->load->view('communications/responsetracker');
 		$this->load->view('templates/beta/footer');
-	}
-
-	public function is_logged_in() {
-		$is_logged_in = $this->session->userdata('is_logged_in');
-		
-		if(!isset($is_logged_in) || ($is_logged_in !== TRUE)) {
-			echo 'You don\'t have permission to access this page. <a href="/login">Login</a>';
-			die();
-		}
-		else {
-		}
 	}
 
 	public function getPerson(){

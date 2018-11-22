@@ -2,7 +2,7 @@
 class Site_info extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
-		$this->load->helper(array('form', 'url'));
+		$this->load->helper(array('form', 'url', 'account_helper'));
 		$this->load->library('form_validation');
 		// $this->load->model('site_information_model'); // CAUTION - already replaced by the complied AIO sites_model
 		$this->load->model('sites_model'); 
@@ -10,7 +10,8 @@ class Site_info extends CI_Controller {
 		// echo $this->session->userdata('id');
 	}
 	public function index() {
-		$this->is_logged_in();
+		is_logged_in($this->session->userdata('is_logged_in'));
+		
 		$page = 'Site Information Page';
 		$data['first_name'] = $this->session->userdata('first_name');
 		$data['last_name'] = $this->session->userdata('last_name');
@@ -85,15 +86,5 @@ class Site_info extends CI_Controller {
 		echo json_encode($all_sites);
 	}
 
-	public function is_logged_in() {
-		$is_logged_in = $this->session->userdata('is_logged_in');
-		
-		if(!isset($is_logged_in) || ($is_logged_in !== TRUE)) {
-			echo 'You don\'t have permission to access this page. <a href="/login">Login</a>';
-			die();
-		}
-		else {
-		}
-	}
 }
 ?>

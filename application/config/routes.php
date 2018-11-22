@@ -129,7 +129,6 @@ $route['analysis/rainfall_summary'] = "rainfall_scanner";
  * Data Analysis Pages Routes
  */
 // Commons
-$route['site_info/index'] = "site_info/index";
 
 $route['general_data_tagging/index'] = "general_tagging/index";
 $route['general_data_tagging/add_gen_tag'] = "general_tagging/addNewGeneralDataTag";
