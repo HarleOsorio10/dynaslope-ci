@@ -157,6 +157,7 @@ $route['site_info/index'] = "site_info/index";
 $route['default_controller'] = "account_controller";
 $route['login'] = "account_controller";
 $route['404_override'] = "error_custom_404";
+$route['session_expired'] = "account_controller/get_session_expired";
 
 
 /* End of file routes.php */
