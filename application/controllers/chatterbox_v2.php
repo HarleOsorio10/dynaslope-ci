@@ -45,5 +45,10 @@ class Chatterbox_v2 extends CI_Controller {
 		$result = $this->ewi_template_model->getAlertStatuses();
 		print json_encode($result);
 	}
+
+	public function getFeedbackData(){
+		session_start();
+		echo $_SESSION['data'] = $_POST['feedback'];
+	}
 }
 ?>

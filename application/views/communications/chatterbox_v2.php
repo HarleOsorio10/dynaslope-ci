@@ -3,12 +3,15 @@
 <link rel="stylesheet" type="text/css" href="/css/third-party/awesomplete.css">
 <link rel="stylesheet" type="text/css" href="/css/third-party/bootstrap-tagsinput.css">
 <link href="/css/dewslandslide/chatterbox.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/js/third-party/feedbackjs/feedback.css">
 <script src="/js/third-party/awesomplete.js"></script>
 <script src="/js/third-party/handlebars.js"></script>
 <script src="/js/third-party/moment-locales.js"></script>
 <script src="/js/third-party/typeahead.js"></script>
 <script src="/js/third-party/bootstrap-tagsinput.js"></script>
 <script src="/js/third-party/notify.min.js"></script>
+<script src="/js/third-party/feedbackjs/feedback.js"></script>
+<script src="/js/third-party/feedbackjs/html2canvas.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 <script src="/js/dewslandslide/communications_beta/cbx_variables.js"></script>
 <script src="/js/dewslandslide/communications_beta/websocket_server.js"></script>
@@ -17,7 +20,18 @@
 <script type="text/javascript">
   first_name = "<?php echo $first_name; ?>";
   tagger_user_id = "<?php echo $user_id; ?>";
+  document.addEventListener('DOMContentLoaded',
+            function () {
+        $.feedback({
+            ajaxURL: '../chatterbox_v2/getFeedbackData',
+            html2canvasURL: '../js/third-party/feedbackjs/html2canvas.js',
+            onClose: function() {}
+        });
+        }, false);
 </script>
+<div class="center menu" id="data-tagging-container">
+    <div id="data-tagging"></div>
+</div>
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -36,7 +50,7 @@
                                 Quick Access
                             </div>
                             <div class="col-sm-3 text-right">
-                                <span class="pointer bug fa fa-bug" hidden></span>
+                                <span class="pointer bug fa fa-bug" id="report-quick-access" hidden></span>
                                 <span id="hide-quick-access" class="pointer fa fa-envelope" title="Inbox"></span>
                             </div>
                         </div>
@@ -64,7 +78,7 @@
                                 Messages
                             </div>
                             <div class="col-sm-3 text-right">
-                                <span class="pointer bug fa fa-bug" hidden></span>
+                                <span class="pointer bug fa fa-bug" id="report-quick-inbox" hidden></span>
                                 <span id="network-reference" class="pointer fa fa-signal" title="Cellular Network Reference"></span>
                                 <span id="go-to-quick-access" class="pointer fa fa-bars" title="Quick Access"></span>
                                 <span id="options" class="pointer fa fa-cogs" title="Options"></span>
@@ -150,7 +164,6 @@
                                 Network Reference
                             </div>
                             <div class="col-sm-3 text-right">
-                                <span class="pointer bug fa fa-bug" hidden></span>
                                 <span id="hide-network-display" class="pointer fa fa-envelope" title="Inbox"></span>
                             </div>
                         </div>
@@ -273,7 +286,7 @@
                                 Recent Activity
                             </div>
                             <div class="col-sm-3 text-right">
-                                <span class="pointer bug fa fa-bug" hidden></span>
+                                <span class="pointer bug fa fa-bug" id="report-recent-activity" hidden></span>
                             </div>
                         </div>
                     </div>
@@ -330,7 +343,7 @@
                                 Conversation Panel
                             </div>
                             <div class="col-sm-3 text-right">
-                                <span class="pointer bug fa fa-bug" hidden></span>
+                                <span class="pointer bug fa fa-bug" id="report-conversation" hidden></span>
                                 <span id="go-to-recent-activity" class="pointer fa fa-hourglass" title="Recent Activity"></span>
                             </div>
                         </div>
@@ -1427,6 +1440,24 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="bug-report-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Enable Bug Report</h4>
+        </div>
+        <div class="modal-body">
+            <button type="button" class="btn btn-primary btn-block" id="enable-bug-report-button">Enable</button>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="/js/dewslandslide/communications_beta/initializer.js"></script>
 <script src="/js/dewslandslide/communications_beta/cbx_main.js"></script>
