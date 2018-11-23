@@ -45,7 +45,7 @@ $route['home'] = "monitoring/index";
 $route['dashboard'] = "monitoring/index";
 $route['monitoring/release_form'] = "pubrelease/index/alert_release_form";
 $route['monitoring/events'] = "pubrelease/index/monitoring_events_all";
-$route['monitoring/events/(:num)/(:num)'] = "pubrelease/index/monitoring_events_individual/$1/$2";
+$route['monitoring/events/(:num)/(:any)'] = "pubrelease/index/monitoring_events_individual/$1/$2";
 $route['monitoring/events/(:num)'] = "pubrelease/index/monitoring_events_individual/$1";
 $route['monitoring/faq'] = "pubrelease/index/monitoring_faq";
 
