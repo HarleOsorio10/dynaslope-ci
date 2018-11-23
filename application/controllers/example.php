@@ -5,13 +5,13 @@ class Example extends CI_Controller
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->helper('url');
+		$this->load->helper(array('url', 'account_helper'));
 		$this->load->model('monitoring_model');
 	}
 
 	public function index()
 	{
-		$this->is_logged_in();
+		is_logged_in($this->session->userdata('is_logged_in'));
 
 		$page = 'About';
 		$data['first_name'] = $this->session->userdata('first_name');
@@ -25,19 +25,7 @@ class Example extends CI_Controller
 		$this->load->view('gold/blank');
 		$this->load->view('templates/footer');
 	}
-
-	public function is_logged_in() 
-	{
-		$is_logged_in = $this->session->userdata('is_logged_in');
-		
-		if(!isset($is_logged_in) || ($is_logged_in !== TRUE)) {
-			echo 'You don\'t have permission to access this page. <a href="/login">Login</a>';
-			die();
-		}
-		else {
-		}
-	}
-
+	
 }
 
 /* End of file example.php */

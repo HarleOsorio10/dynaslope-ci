@@ -5,18 +5,18 @@ class Manifestations extends CI_Controller
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->helper('url');
+		$this->load->helper(array('url', 'account_helper'));
 		$this->load->model('api_model');
 		$this->load->model('manifestations_model');
 		$this->load->model('sites_model');
 		$this->load->model('users_model');
 		$this->load->model('public_alert_event_model');
-
+	
 	}
 
 	public function index()
 	{
-		$this->is_logged_in();
+		is_logged_in($this->session->userdata('is_logged_in'));
 
 		$data['title'] = 'Manifestations of Movement Table - Analysis';
 		$data['first_name'] = $this->session->userdata('first_name');
@@ -31,7 +31,7 @@ class Manifestations extends CI_Controller
 
 	public function individual_site($site_code)
 	{
-		$this->is_logged_in();
+		is_logged_in($this->session->userdata('is_logged_in'));
 
 		$data['title'] = 'Site Manifestations of Movement - Analysis';
 		$data['first_name'] = $this->session->userdata('first_name');
@@ -165,18 +165,6 @@ class Manifestations extends CI_Controller
 	public function getDistinctFeatureTypes()
 	{
 		echo json_encode($this->manifestations_model->getDistinctFeatureTypes());
-	}
-
-	public function is_logged_in() 
-	{
-		$is_logged_in = $this->session->userdata('is_logged_in');
-		
-		if(!isset($is_logged_in) || ($is_logged_in !== TRUE)) {
-			echo 'You don\'t have permission to access this page. <a href="/login">Login</a>';
-			die();
-		}
-		else {
-		}
 	}
 
 }

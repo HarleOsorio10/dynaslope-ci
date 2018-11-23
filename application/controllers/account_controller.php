@@ -2,6 +2,11 @@
 
 class Account_controller extends CI_Controller {
 
+	public function __construct() {
+		parent::__construct();
+		$this->load->helper('url');
+	}
+
 	public function index() {
 		$data['title'] = 'Login';
 		$this->load->view('templates/header', $data);
@@ -83,5 +88,14 @@ class Account_controller extends CI_Controller {
 	    $this->session->unset_userdata('last_name');   
 	    $this->session->set_userdata('is_logged_in','false');
 	    redirect('login');
+	}
+
+	public function get_session_expired() 
+	{
+		$data['title'] = "Session Expired";
+		$this->load->view('templates/beta/header', $data);
+        $this->load->view('pages/org_head_template');
+		$this->load->view('pages/session_expired');
+		$this->load->view('templates/beta/footer');
 	}
 }
