@@ -143,5 +143,10 @@ class Qa_tally extends CI_Controller {
 		$this->switchToSenslope();
 	}
 
+	public function evaluateSite() {
+		$data = $_POST;
+		echo $data;
+	}
+
 }
 ?>

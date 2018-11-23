@@ -1,6 +1,6 @@
 <script id="event-qa-template" type="text/x-handlebars-template">
     {{#each tally_data}}
-    <div class="panel panel-primary">
+    <div class="panel panel-primary {{event_id}}">
       <div class="panel-heading" data-toggle="collapse" href="#{{site_code}}">
         <div class="row">
             <div class="col-sm-9">
