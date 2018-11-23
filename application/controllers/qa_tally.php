@@ -116,16 +116,22 @@ class Qa_tally extends CI_Controller {
 				$column = "ewi_actual";
 				$update_tally_record = $this->qa_tally_model->updateTallyRecord($table_source[1], $column, $data['event_id'], $temp, $data['data_timestamp']);
 				break;
-			case 'gndmeas_reminder':
+			case 'gndmeas_reminder_event':
+				$previous_data = $this->qa_tally_model->getRecordViaEventID($table_source[0], $data['event_id']);
 				$temp = $previous_data[0]->gndmeas_reminder_actual + $data['sent_count'];
 				$column = "gndmeas_reminder_actual";
+				$update_tally_record = $this->qa_tally_model->updateTallyRecord($table_source[0], $column, $data['event_id'], $temp, $data['data_timestamp']);
+				break;
+			case 'gndmeas_reminder_extended':
+				$previous_data = $this->qa_tally_model->getRecordViaEventID($table_source[1], $data['event_id']);
+				$temp = $previous_data[0]->gndmeas_reminder_actual + $data['sent_count'];
+				$column = "gndmeas_reminder_actual";
+				$update_tally_record = $this->qa_tally_model->updateTallyRecord($table_source[1], $column, $data['event_id'], $temp, $data['data_timestamp']);
 				break;
 			default:
 				// Nothing to do.
 				break;
 		}
-		
-		var_dump($update_tally_record);
 		$this->switchToSenslope();
 	}
 
@@ -134,8 +140,6 @@ class Qa_tally extends CI_Controller {
 		$data = $_POST;
 		$table_source = "qa_tally_extended";
 		$previous_data = $this->qa_tally_model->getRecordViaEventID($table_source, $data['site_id']);
-		var_dump($previous_data);
-		var_dump($data);
 		$this->switchToSenslope();
 	}
 
