@@ -21,13 +21,13 @@
   first_name = "<?php echo $first_name; ?>";
   tagger_user_id = "<?php echo $user_id; ?>";
   document.addEventListener('DOMContentLoaded',
-            function () {
+    function () {
         $.feedback({
             ajaxURL: '../chatterbox_v2/getFeedbackData',
             html2canvasURL: '../js/third-party/feedbackjs/html2canvas.js',
             onClose: function() {}
         });
-        }, false);
+    }, false);
 </script>
 <div class="center menu" id="data-tagging-container">
     <div id="data-tagging"></div>
