@@ -28,7 +28,36 @@
                     <span class="circle right"></span>
                 </div>            
             </div>
+
+            <div class="col-sm-12">
+                <form role="form" id="accomplishmentForm" method="get">
+                    <div class="form-group col-sm-5">
+                        <label class="control-label" for="shift_start">Start of Shift</label>
+                        <div class='input-group date datetime shift_start'>
+                            <input type='text' class="form-control" id="shift_start" name="shift_start" placeholder="Enter timestamp" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>        
+                    </div>
+
+                    <div class="form-group col-sm-5">
+                        <label class="control-label" for="shift_end">End of Shift</label>
+                        <div class='input-group date datetime shift_end'>
+                            <input type='text' class="form-control" id="shift_end" name="shift_end" placeholder="Enter timestamp" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>  
+                    </div>
+
+                    <div class="form-group col-sm-2 text-center" style="top: 24px;">
+                        <button type="submit" class="btn btn-danger btn" id="generate" disabled="disabled">Generate</button>
+                    </div>
+                </form>
+            </div>
         </div>
+
         <div id="event-qa-display">
 
         </div>   
@@ -39,6 +68,33 @@
                     <div class="container-line-text timeline-head-text">Extended Monitoring</div>
                     <span class="circle right"></span>
                 </div>        
+            </div>
+            <div class="col-sm-12">
+                <form role="form" id="accomplishmentForm" method="get">
+                    <div class="form-group col-sm-5">
+                        <label class="control-label" for="shift_start">Start of Shift</label>
+                        <div class='input-group date datetime shift_start'>
+                            <input type='text' class="form-control" id="shift_start" name="shift_start" placeholder="Enter timestamp" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>        
+                    </div>
+
+                    <div class="form-group col-sm-5">
+                        <label class="control-label" for="shift_end">End of Shift</label>
+                        <div class='input-group date datetime shift_end'>
+                            <input type='text' class="form-control" id="shift_end" name="shift_end" placeholder="Enter timestamp" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>  
+                    </div>
+
+                    <div class="form-group col-sm-2 text-center" style="top: 24px;">
+                        <button type="submit" class="btn btn-danger btn" id="generate" disabled="disabled">Generate</button>
+                    </div>
+                </form>
             </div>
         </div>
         <div id="extended-qa-display">
@@ -51,6 +107,33 @@
                     <div class="container-line-text timeline-head-text">Routine Monitoring</div>
                     <span class="circle right"></span>
                 </div>
+            </div>
+            <div class="col-sm-12">
+                <form role="form" id="accomplishmentForm" method="get">
+                    <div class="form-group col-sm-5">
+                        <label class="control-label" for="shift_start">Start of Shift</label>
+                        <div class='input-group date datetime shift_start'>
+                            <input type='text' class="form-control" id="shift_start" name="shift_start" placeholder="Enter timestamp" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>        
+                    </div>
+
+                    <div class="form-group col-sm-5">
+                        <label class="control-label" for="shift_end">End of Shift</label>
+                        <div class='input-group date datetime shift_end'>
+                            <input type='text' class="form-control" id="shift_end" name="shift_end" placeholder="Enter timestamp" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>  
+                    </div>
+
+                    <div class="form-group col-sm-2 text-center" style="top: 24px;">
+                        <button type="submit" class="btn btn-danger btn" id="generate" disabled="disabled">Generate</button>
+                    </div>
+                </form>
             </div>
         </div>
         <div id="routine-qa-display">
