@@ -62,6 +62,9 @@
 		            		<span class="dropdown-header">Monitoring and End-of-Shift Report</span>
 		                    <a href="<?php echo base_url(); ?>reports/monitoring">Narrative Form and Report Generator</a>
 		                    <a href="<?php echo base_url(); ?>reports/monitoring/shift_checker">Shift Checker</a>
+		                    <hr class="divider" />
+		                    <span class="dropdown-header">Quality Assurance</span>
+		                    <a href="<?php echo base_url(); ?>qa_tally">QA Tally Report</a>
 		                </div>
 		        	</li>
         		</div>

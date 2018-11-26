@@ -13,7 +13,6 @@
   first_name = "<?php echo $first_name; ?>";
   tagger_user_id = "<?php echo $user_id; ?>";
 </script>
-
 <div id="page-wrapper">
     <div class="container">
         <div class="row">

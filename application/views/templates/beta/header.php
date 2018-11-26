@@ -46,5 +46,6 @@
     <script type="text/javascript" src="/js/third-party/modal-reposition.js"></script>
     <!-- PMS SAMPLE -->
     <script type="text/javascript" src="http://192.168.150.76/js/pms.js"></script>
+    <!-- <script src="/js/dewslandslide/reports/qa_tally.js"></script> -->
     
 </head>

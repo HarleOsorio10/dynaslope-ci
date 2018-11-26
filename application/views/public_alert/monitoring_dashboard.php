@@ -541,3 +541,5 @@
 		<?php echo $bulletin_modals; ?>
 	</div> <!-- End of Container -->
 </div> <!-- End of Page Wrapper -->
+
+<script src="/js/dewslandslide/reports/qa_tally.js"></script>

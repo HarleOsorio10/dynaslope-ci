@@ -137,15 +137,15 @@ class Qa_tally extends CI_Controller {
 
 	public function updateTallyCountExtended() {
 		$this->switchToCommons();
-		$data = $_POST;
+		$data = $_POST['id'];
 		$table_source = "qa_tally_extended";
 		$previous_data = $this->qa_tally_model->getRecordViaEventID($table_source, $data['site_id']);
 		$this->switchToSenslope();
 	}
 
 	public function evaluateSite() {
-		$data = $_POST;
-		echo $data;
+		$data = $_POST['id'];
+		var_dump($data);
 	}
 
 }
