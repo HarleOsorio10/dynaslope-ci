@@ -137,16 +137,29 @@ class Qa_tally extends CI_Controller {
 
 	public function updateTallyCountExtended() {
 		$this->switchToCommons();
-		$data = $_POST['id'];
+		$data = $_POST['data'];
 		$table_source = "qa_tally_extended";
 		$previous_data = $this->qa_tally_model->getRecordViaEventID($table_source, $data['site_id']);
 		$this->switchToSenslope();
 	}
 
 	public function evaluateSite() {
-		$data = $_POST['id'];
-		var_dump($data);
+		$this->switchToCommons();
+		$data = $_POST['data'];
+		switch ($data['category']) {
+			case 'event':
+				$table_source = "qa_tally_event";
+				break;
+			case 'extended':
+				$table_source = "qa_tally_extended";
+				break;
+			default:
+				// TODO: Routine section
+				break;
+		}
+		$result = $this->qa_tally_model->evaluate($table_source, $data['id']);
+		$this->switchToSenslope();
+		print $result;
 	}
-
 }
 ?>

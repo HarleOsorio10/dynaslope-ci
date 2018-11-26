@@ -56,5 +56,11 @@
 			$result = $this->db->query($query);
 			return $result;
 		}
+
+		public function evaluate($table_source,$event_id) {
+			$query = "UPDATE ".$table_source." SET status = '0' WHERE event_id = '".$event_id."'";
+			$result = $this->db->query($query);
+			return $result;
+		}
 	}
 ?>

@@ -54,7 +54,7 @@
             </div>
         </div>
         <div id="routine-qa-display">
-
+            <strong><span>Not yet available.</span></strong>
         </div>
     </div>
 </div>
