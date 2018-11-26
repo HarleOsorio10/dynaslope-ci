@@ -37,8 +37,9 @@ class Chatterbox_v2 extends CI_Controller {
 	}
 
 	public function getFeedbackData(){
-		session_start();
-		echo $_SESSION['data'] = $_POST['feedback'];
+		// session_start();
+		// var_dump($_POST);
+		echo 1;
 	}
 }
 ?>

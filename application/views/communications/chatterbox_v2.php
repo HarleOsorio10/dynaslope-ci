@@ -23,7 +23,7 @@
   document.addEventListener('DOMContentLoaded',
     function () {
         $.feedback({
-            ajaxURL: '../chatterbox_v2/getFeedbackData',
+            ajaxURL: '../feedback/submit',
             html2canvasURL: '../js/third-party/feedbackjs/html2canvas.js',
             onClose: function() {}
         });

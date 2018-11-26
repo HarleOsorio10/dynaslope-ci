@@ -153,6 +153,8 @@ $route['staff/change_profile_pic'] = "staff_profile/changeProfilePic";
 
 $route['site_info/index'] = "site_info/index";
 
+$route['feedback/submit'] = "chatterbox_v2/getFeedbackData";
+
 $route['default_controller'] = "account_controller";
 $route['login'] = "account_controller";
 $route['404_override'] = "error_custom_404";
