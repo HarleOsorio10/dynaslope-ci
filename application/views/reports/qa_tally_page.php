@@ -52,10 +52,11 @@
                     </div>
 
                     <div class="form-group col-sm-2 text-center" style="top: 24px;">
-                        <button type="submit" class="btn btn-danger btn" id="generate" disabled="disabled">Generate</button>
+                        <button type="submit" class="btn btn-primary btn-block" id="generate" disabled="disabled">Generate Tally</button>
                     </div>
                 </form>
             </div>
+            <div class="col-sm-12"><hr></div>
         </div>
 
         <div id="event-qa-display">
@@ -92,10 +93,11 @@
                     </div>
 
                     <div class="form-group col-sm-2 text-center" style="top: 24px;">
-                        <button type="submit" class="btn btn-danger btn" id="generate" disabled="disabled">Generate</button>
+                        <button type="submit" class="btn btn-primary btn-block" id="generate" disabled="disabled">Generate Tally</button>
                     </div>
                 </form>
             </div>
+            <div class="col-sm-12"><hr></div>
         </div>
         <div id="extended-qa-display">
 
@@ -131,10 +133,11 @@
                     </div>
 
                     <div class="form-group col-sm-2 text-center" style="top: 24px;">
-                        <button type="submit" class="btn btn-danger btn" id="generate" disabled="disabled">Generate</button>
+                        <button type="submit" class="btn btn-primary btn-block" id="generate" disabled="disabled">Generate Tally</button>
                     </div>
                 </form>
             </div>
+            <div class="col-sm-12"><hr></div>
         </div>
         <div id="routine-qa-display">
             <strong><span>Not yet available.</span></strong>
