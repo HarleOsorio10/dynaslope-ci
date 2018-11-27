@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <div class="text-center"><strong>Actual Tally of Outgoing Messages</strong></div>
+                        <div class="text-center"><strong>Actual Tally of Outgoing and Incomming Messages</strong></div>
                         <hr>
                         <div>
                             <span>Actual EWI messages sent : <strong>{{ewi_actual}}</strong></span>
@@ -94,7 +94,7 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="text-center"><strong>Actual Tally of Outgoing Messages</strong></div>
+                    <div class="text-center"><strong>Actual Tally of Outgoing and Incomming Messages</strong></div>
                     <hr>
                     <div>
                         <span>Actual EWI messages sent : <strong>{{ewi_actual}}</strong></span>

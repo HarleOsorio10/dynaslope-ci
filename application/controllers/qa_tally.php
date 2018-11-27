@@ -142,6 +142,18 @@ class Qa_tally extends CI_Controller {
 				$column = "gndmeas_reminder_actual";
 				$update_tally_record = $this->qa_tally_model->updateTallyRecord($table_source[1], $column, $data['event_id'], $temp, $data['data_timestamp']);
 				break;
+			case 'ewi_acknowledgement':
+				$event_previous_data = $this->qa_tally_model->getRecordViaEventID($table_source[0], $data['event_id']);
+				$extended_previous_data = $this->qa_tally_model->getRecordViaEventID($table_source[1], $data['event_id']);
+				$column = "ewi_ack";
+				if (sizeOf($event_previous_data) != 0) {
+					$temp = $event_previous_data[0]->ewi_ack + $data['sent_count'];
+					$update_tally_record = $this->qa_tally_model->updateTallyRecord($table_source[0], $column, $data['event_id'], $temp, $data['data_timestamp']);
+				} else {
+					$temp = $extended_previous_data[0]->ewi_ack + $data['sent_count'];
+					$update_tally_record = $this->qa_tally_model->updateTallyRecord($table_source[1], $column, $data['event_id'], $temp, $data['data_timestamp']);
+				}
+				break;
 			default:
 				// Nothing to do.
 				break;
