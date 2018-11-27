@@ -53,6 +53,7 @@
 
 		public function updateTallyRecord($table_source, $column ,$event_id, $count, $ts) {
 			$query = "UPDATE ".$table_source." SET ".$column." = '".$count."', ts='".$ts."' WHERE event_id = '".$event_id."'";
+			echo $query;
 			$result = $this->db->query($query);
 			return $result;
 		}
