@@ -54,6 +54,20 @@ class Qa_tally extends CI_Controller {
 		print json_encode($setting_container);
 	}
 
+	public function getRecordForSelectedDateRange(){
+		$this->switchToCommons();
+		$table_source = ['qa_tally_event', 'qa_tally_extended'];
+		$setting_container = [];
+		$start = $this->input->post('start');
+		$end = $this->input->post('end');
+		foreach ($table_source as $table) {
+			$result = $this->qa_tally_model->getRecordForSelectedDateRange($table, $start, $end);
+			array_push($setting_container, [$result]);
+		}
+		$this->switchToSenslope();
+		print json_encode($setting_container);
+	}
+
 	public function getEventDefaultData() {
 		$result = $this->qa_tally_model->getDefaultRecordForToday("on-going");
 		return $result;
@@ -160,6 +174,18 @@ class Qa_tally extends CI_Controller {
 		$result = $this->qa_tally_model->evaluate($table_source, $data['id']);
 		$this->switchToSenslope();
 		print $result;
+	}
+
+	public function getEventData(){
+
+	}
+
+	public function getExtendedData(){
+
+	}
+
+	public function getRoutineData(){
+		
 	}
 }
 ?>

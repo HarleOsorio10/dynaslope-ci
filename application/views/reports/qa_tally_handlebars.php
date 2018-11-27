@@ -49,11 +49,16 @@
                     </div>
                     </small>
                 </div>
-                <div class="row" style="padding-top:20px; width:100%;">
-                    <div class="col-sm-5 col-sm-offset-2" style="margin-left: 15%;">
-                        <button class="evaluate-event btn btn-info pull-right" value="{{event_id}}">Evaluate</button>
+                {{#if status}}
+                {{else}}
+                    <div class="row">
+                        <div class="row" style="padding-top:20px; width:100%;">
+                            <div class="col-sm-5 col-sm-offset-2" style="margin-left: 15%;">
+                                <button class="btn btn-info pull-right evaluate-extended" value="{{event_id}}">Evaluate</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                {{/if}}
             </div>
             
         </div>
@@ -112,14 +117,17 @@
                 </div>
                 </small>
             </div>
-            <div class="row">
-                <div class="row" style="padding-top:20px; width:100%;">
-                    <div class="col-sm-5 col-sm-offset-2" style="margin-left: 15%;">
-                        <button class="btn btn-info pull-right evaluate-extended" value="{{event_id}}">Evaluate</button>
+            <span>{{status}}</span>
+            {{#if status}}
+            {{else}}
+                <div class="row">
+                    <div class="row" style="padding-top:20px; width:100%;">
+                        <div class="col-sm-5 col-sm-offset-2" style="margin-left: 15%;">
+                            <button class="btn btn-info pull-right evaluate-extended" value="{{event_id}}">Evaluate</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
+            {{/if}}
           </div>
       </div>
     </div>
