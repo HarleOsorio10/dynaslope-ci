@@ -34,7 +34,7 @@
                     <div class="form-group col-sm-5">
                         <label class="control-label" for="shift_start">Start of Shift</label>
                         <div class='input-group date datetime shift_start'>
-                            <input type='text' class="form-control" id="shift_start" name="shift_start" placeholder="Enter timestamp" />
+                            <input type='text' class="form-control" id="event_shift_start" name="shift_start" placeholder="Enter timestamp" />
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -44,7 +44,7 @@
                     <div class="form-group col-sm-5">
                         <label class="control-label" for="shift_end">End of Shift</label>
                         <div class='input-group date datetime shift_end'>
-                            <input type='text' class="form-control" id="shift_end" name="shift_end" placeholder="Enter timestamp" />
+                            <input type='text' class="form-control" id="event_shift_end" name="shift_end" placeholder="Enter timestamp" />
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -75,7 +75,7 @@
                     <div class="form-group col-sm-5">
                         <label class="control-label" for="shift_start">Start of Shift</label>
                         <div class='input-group date datetime shift_start'>
-                            <input type='text' class="form-control" id="shift_start" name="shift_start" placeholder="Enter timestamp" />
+                            <input type='text' class="form-control" id="extended_shift_start" name="shift_start" placeholder="Enter timestamp" />
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -85,7 +85,7 @@
                     <div class="form-group col-sm-5">
                         <label class="control-label" for="shift_end">End of Shift</label>
                         <div class='input-group date datetime shift_end'>
-                            <input type='text' class="form-control" id="shift_end" name="shift_end" placeholder="Enter timestamp" />
+                            <input type='text' class="form-control" id="extended_shift_end" name="shift_end" placeholder="Enter timestamp" />
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -115,7 +115,7 @@
                     <div class="form-group col-sm-5">
                         <label class="control-label" for="shift_start">Start of Shift</label>
                         <div class='input-group date datetime shift_start'>
-                            <input type='text' class="form-control" id="shift_start" name="shift_start" placeholder="Enter timestamp" />
+                            <input type='text' class="form-control" id="routine_shift_start" name="shift_start" placeholder="Enter timestamp" />
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -125,7 +125,7 @@
                     <div class="form-group col-sm-5">
                         <label class="control-label" for="shift_end">End of Shift</label>
                         <div class='input-group date datetime shift_end'>
-                            <input type='text' class="form-control" id="shift_end" name="shift_end" placeholder="Enter timestamp" />
+                            <input type='text' class="form-control" id="routine_shift_end" name="shift_end" placeholder="Enter timestamp" />
                             <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
