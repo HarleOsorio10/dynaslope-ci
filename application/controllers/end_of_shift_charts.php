@@ -3,11 +3,11 @@ class End_of_shift_charts extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->helper('url');
+		$this->load->helper(array('url', 'account_helper'));
 	}
 
 	public function index () {
-		$this->is_logged_in();
+		is_logged_in($this->session->userdata('is_logged_in'));
 
 		$data["title"] = "EOS: AGB - Rainfall/Surficial/AGBTA";
 		$data["first_name"] = $this->session->userdata("first_name");
@@ -19,15 +19,6 @@ class End_of_shift_charts extends CI_Controller {
 
 		$this->load->view("templates/header", $data);
 		$this->load->view("data_analysis/end_of_shift_charts", $data);
-	}
-
-	public function is_logged_in() {
-		$is_logged_in = $this->session->userdata('is_logged_in');
-		
-		if(!isset($is_logged_in) || ($is_logged_in !== TRUE)) {
-			echo 'You don\'t have permission to access this page. <a href="../lin">Login</a>';
-			die();
-		}
 	}
 
 	public function getAllEos () {

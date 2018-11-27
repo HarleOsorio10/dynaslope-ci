@@ -4,7 +4,7 @@ class Pubrelease extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->helper('url');
+		$this->load->helper(array('url', 'account_helper'));
 		$this->load->model('api_model');
 		$this->load->model('pubrelease_model');
 		$this->load->model('sites_model');
@@ -19,7 +19,7 @@ class Pubrelease extends CI_Controller {
 
 	public function index($page)
 	{
-		$this->is_logged_in();
+		is_logged_in($this->session->userdata('is_logged_in'));
 
 		$data['user_id'] = $this->session->userdata("id");
 		$data['first_name'] = $this->session->userdata('first_name');
@@ -684,32 +684,27 @@ class Pubrelease extends CI_Controller {
 		}
 	}
 
-	public function is_logged_in() 
-	{
-		$is_logged_in = $this->session->userdata('is_logged_in');
-		
-		if(!isset($is_logged_in) || ($is_logged_in !== TRUE)) {
-			echo 'You don\'t have permission to access this page. <a href="../login">Login</a>';
-			die();
-		}
-		else {
-		}
-	}
-
 	/**
-	 * Controller functions for AJAX query getSitesPerAlertLevelHistory
+	 * Controller functions for monitoring events history
 	 *
 	 * @author John Louie Nepomuceno
 	 **/	
-	public function getEventsPerAlertLevelHistory($alert_level, $start_time, $end_time) {
-		$result = $this->public_alert_event_model->getEventsPerAlertLevelHistory($alert_level, $start_time, $end_time);		
-		echo json_encode($result);
-	}
+	// public function getEventsPerAlertLevelHistory($alert_level, $start_time, $end_time) {
+	// 	$result = $this->public_alert_event_model->getEventsPerAlertLevelHistory($alert_level, $start_time, $end_time);		
+	// 	echo json_encode($result);
+	// }
 
 	public function getEventsBasedOnDate($start_time, $end_time) {
 		$result = $this->public_alert_event_model->getEventsBasedOnDate($start_time, $end_time);
 		echo json_encode($result);
-	}		
+	}
+
+	public function getAllSites() {
+		// $result = $this->sites_model->getCompleteSiteInformation("all",true);
+		$result = $this->sites_model->getSites();
+		echo json_encode($result);
+	}
+	// End of controller functions for monitoring events history
 }
 
 /* End of file pubrelease.php */

@@ -21,9 +21,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">
-                    Monitoring Issues and Reminders Page
-                </h1>
+                <div id="page-header">
+                    Site Alert Monitoring <small>Issues and Reminders</small>
+                </div>
             </div>
         </div>
         <div id="issues_and_reminders_panels">

@@ -33,7 +33,7 @@
                     <span class="circle right"></span>
                 </div>
                 <h4 id="address" class="primary-color">---</h4>
-                <h4 id="event_timeframe" class="primary-color">---</h4>            
+                <h4 id="event_timeframe" class="primary-color">---</h4>
             </div>
         </div>
 
@@ -44,7 +44,31 @@
                     <span class="circle right"></span>
                 </div>       
             </div>
-        </div>      
+        </div>
+
+        <div class="row text-center" id="anchor-div" hidden="hidden">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div id="anchor-div-am" class="btn-group" hidden="hidden">
+                        <button id="anchor-link-template" type="button" class="btn btn-primary btn-sm">
+                            <span class="icon fa fa-sun"></span>
+                            <span class="button-text">AM</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div id="anchor-div-pm" class="btn-group" hidden="hidden">
+                        <button id="anchor-link-template" type="button" class="btn btn-primary btn-sm">
+                            <span class="icon fa fa-moon"></span>
+                            <span class="button-text">PM</span>
+                        </button>
+                    </div>
+                </div>
+            </div>    
+        </div>
+
+        <br/>
 
         <div class="row">
             <div class="col-sm-12 text-center">
@@ -73,6 +97,17 @@
 
 
 <!-- TEMPLATES -->
+<li id="date-tag-template" class="date-tag" hidden="hidden">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+           <div class="date-tag-line date-tag-head">
+                <span class="circle left"></span>
+                <div id="date-tag" class="container-line-text date-tag-text">---</div>
+                <span class="circle right"></span>
+            </div>  
+        </div>
+    </div>
+</li>
 <li id="ewi-card-template" class="timeline" hidden="hidden">
     <div class="timeline-panel ewi-card">
         <div class="timeline-heading">
@@ -86,7 +121,14 @@
                     <h2 class="head"><span class="small card-title">Early Warning Release</span><span class="card-title-ts">September 25th 2018, 12:00 PM</span></h2>
                 </div>
                 <div class="col-sm-1 text-right">
-                    <span class="fa fa-edit"></span>
+                        <span class="fa fa-ellipsis-v dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
+                        <ul class="dropdown-menu">
+                            <li><a class="edit">Edit</a></li>
+                            <li>
+                                <a class="copy-link">Copy Link</a>
+                                <span class="link-text" hidden="hidden"></span>
+                            </li>
+                        </ul>
                 </div>                                
             </div>
         </div>
@@ -134,8 +176,14 @@
                         <span>NAR</span>
                     </div>                                                      
                 </div>
-                <div class="col-sm-10 narrative-title">
+                <div class="col-sm-9 narrative-title">
                     Narrative | <span class="narrative-ts">September 25th 2018, 12:05 PM</span>
+                </div>
+                <div class="col-sm-1 text-right">
+                    <span class="fa fa-ellipsis-v dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
+                        <ul class="dropdown-menu">
+                            <li><a class="copy-link">Copy Link</a></li>
+                        </ul>
                 </div>
             </div>
         </div>
@@ -157,8 +205,14 @@
                         <span>EOS</span>
                     </div>                                                                         
                 </div>
-                <div class="col-sm-10 head-column">
+                <div class="col-sm-9 head-column">
                     <h2 class="head"><span class="small card-title">End-of-Shift Analysis</span><span class="card-title-ts">September 25th 2018, 8:30 AM</span></h2>
+                </div>
+                <div class="col-sm-1 text-right">
+                        <span class="fa fa-ellipsis-v dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
+                        <ul class="dropdown-menu">
+                            <li><a class="copy-link">Copy Link</a></li>
+                        </ul>
                 </div>                                
             </div>
         </div>

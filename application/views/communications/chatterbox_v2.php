@@ -3,12 +3,15 @@
 <link rel="stylesheet" type="text/css" href="/css/third-party/awesomplete.css">
 <link rel="stylesheet" type="text/css" href="/css/third-party/bootstrap-tagsinput.css">
 <link href="/css/dewslandslide/chatterbox.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/js/third-party/feedbackjs/feedback.css">
 <script src="/js/third-party/awesomplete.js"></script>
 <script src="/js/third-party/handlebars.js"></script>
 <script src="/js/third-party/moment-locales.js"></script>
 <script src="/js/third-party/typeahead.js"></script>
 <script src="/js/third-party/bootstrap-tagsinput.js"></script>
 <script src="/js/third-party/notify.min.js"></script>
+<script src="/js/third-party/feedbackjs/feedback.js"></script>
+<script src="/js/third-party/feedbackjs/html2canvas.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 <script src="/js/dewslandslide/communications_beta/cbx_variables.js"></script>
 <script src="/js/dewslandslide/communications_beta/websocket_server.js"></script>
@@ -17,7 +20,18 @@
 <script type="text/javascript">
   first_name = "<?php echo $first_name; ?>";
   tagger_user_id = "<?php echo $user_id; ?>";
+  document.addEventListener('DOMContentLoaded',
+    function () {
+        $.feedback({
+            ajaxURL: '../feedback/submit',
+            html2canvasURL: '../js/third-party/feedbackjs/html2canvas.js',
+            onClose: function() {}
+        });
+    }, false);
 </script>
+<div class="center menu" id="data-tagging-container">
+    <div id="data-tagging"></div>
+</div>
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -36,7 +50,7 @@
                                 Quick Access
                             </div>
                             <div class="col-sm-3 text-right">
-                                <span class="pointer bug fa fa-bug" hidden></span>
+                                <span class="pointer bug fa fa-bug" id="report-quick-access" hidden></span>
                                 <span id="hide-quick-access" class="pointer fa fa-envelope" title="Inbox"></span>
                             </div>
                         </div>
@@ -64,7 +78,7 @@
                                 Messages
                             </div>
                             <div class="col-sm-3 text-right">
-                                <span class="pointer bug fa fa-bug" hidden></span>
+                                <span class="pointer bug fa fa-bug" id="report-quick-inbox" hidden></span>
                                 <span id="network-reference" class="pointer fa fa-signal" title="Cellular Network Reference"></span>
                                 <span id="go-to-quick-access" class="pointer fa fa-bars" title="Quick Access"></span>
                                 <span id="options" class="pointer fa fa-cogs" title="Options"></span>
@@ -150,7 +164,6 @@
                                 Network Reference
                             </div>
                             <div class="col-sm-3 text-right">
-                                <span class="pointer bug fa fa-bug" hidden></span>
                                 <span id="hide-network-display" class="pointer fa fa-envelope" title="Inbox"></span>
                             </div>
                         </div>
@@ -273,7 +286,7 @@
                                 Recent Activity
                             </div>
                             <div class="col-sm-3 text-right">
-                                <span class="pointer bug fa fa-bug" hidden></span>
+                                <span class="pointer bug fa fa-bug" id="report-recent-activity" hidden></span>
                             </div>
                         </div>
                     </div>
@@ -330,7 +343,7 @@
                                 Conversation Panel
                             </div>
                             <div class="col-sm-3 text-right">
-                                <span class="pointer bug fa fa-bug" hidden></span>
+                                <span class="pointer bug fa fa-bug" id="report-conversation" hidden></span>
                                 <span id="go-to-recent-activity" class="pointer fa fa-hourglass" title="Recent Activity"></span>
                             </div>
                         </div>
@@ -761,6 +774,7 @@
               <option value="econtacts">Employee Contacts</option>
               <option value="ccontacts">Community Contacts</option>
               <option value="unregistered">Unregistered Contacts</option>
+              <option value="data_logger">Datalogger Contacts</option>
             </select>  
           </div>
 
@@ -776,6 +790,281 @@
 
         <hr>
 
+
+        <div id="unregistered-wrapper" hidden>
+            <div id="unregistered_options">
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist" id="unregistered_save_type">
+                <li role="presentation" class="active"><a href="#employee_unregistered_tab" aria-controls="employee_unregistered_tab" role="tab" data-toggle="tab">Save as Employee</a></li>
+                <li role="presentation"><a href="#community_unregistered_tab" aria-controls="community_unregistered_tab" role="tab" data-toggle="tab">Save as Community</a></li>
+              </ul>
+
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="employee_unregistered_tab">
+                    <br>
+                    <form id="employee-unregistered-form">
+                        <input type="text" id="emp_unregistered_user_id" value="0" hidden>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group hideable">
+                                    <label class="control-label" for="emp_unregistered_first_name">Firstname</label>
+                                        <input type="text" class="form-control" id="emp_unregistered_first_name" name="emp_unregistered_first_name" placeholder="Enter firstname" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group hideable">
+                                    <label class="control-label" for="emp_unregistered_lastname">Lastname</label>
+                                        <input type="text" class="form-control" id="emp_unregistered_lastname" name="emp_unregistered_lastname" placeholder="Enter lastname" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group hideable">
+                                    <label class="control-label" for="emp_unregistered_middlename">Middlename</label>
+                                        <input type="text" class="form-control" id="emp_unregistered_middlename" name="emp_unregistered_middlename" placeholder="Enter middlename" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group hideable">
+                                    <label class="control-label" for="emp_unregistered_nickname">Nickname</label>
+                                        <input type="text" class="form-control" id="emp_unregistered_nickname" name="emp_unregistered_nickname" placeholder="Enter nickname" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group hideable">
+                                    <label class="control-label" for="emp_unregistered_salutation">Salutation</label>
+                                        <input type="text" class="form-control" id="emp_unregistered_salutation" name="emp_unregistered_salutation" placeholder="Enter salutation" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group hideable">
+                                    <label class="control-label" for="emp_unregistered_gender">Gender</label>
+                                        <input type="text" class="form-control" id="emp_unregistered_gender" name="emp_unregistered_gender" placeholder="Enter gender" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group hideable">
+                                    <label class="control-label" for="emp_unregistered_birthdate">Birthdate</label>
+                                    <div class="input-group date datetime">
+                                        <input type="text" class="form-control birthdate" id="emp_unregistered_birthdate" name="emp_unregistered_birthdate" placeholder="Enter birthdate" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>  
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group hideable">
+                                <label class="control-label" for="emp_unregistered_email">Email</label>
+                                    <input type="text" class="form-control" data-role="tagsinput" id="emp_unregistered_email" name="emp_unregistered_email" placeholder="Enter email" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group hideable">
+                                <label class="control-label" for="emp_unregistered_active_status">Contact Active Status</label>
+                                <select class="form-control" id="emp_unregistered_active_status" name="emp_unregistered_active_status">
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group hideable">
+                                <label class="control-label" for="emp_unregistered_team">Team(s):</label>
+                                <input type="text" class="form-control" data-role="tagsinput" id="emp_unregistered_team" name="emp_unregistered_team" placeholder="Enter team" required />
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <br>
+                            <button type="button" class="btn btn-primary btn-xs" id="emp_unregistered_add_mobile"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  Mobile Number</button>
+                            <button type="button" class="btn btn-primary btn-xs" id="emp_unregistered_add_landline"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  Landline Number</button>
+                        </div>
+                    </div>
+
+                        <div id="emp_unregistered_mobile_div">
+                        </div>
+
+                        <hr>
+
+                        <div id="emp_unregistered_landline_div">
+                        </div>
+
+                        <div class="right-content">
+                            <button class="btn btn-danger" id="emp_unregistered_clear" >Reset</button>
+                            <button type="submit" value="submit" class="btn btn-primary" id="emp_unregistered_save">Save</button>
+                        </div>
+                    </form>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="community_unregistered_tab">
+                    <br>
+                    <form id="community-unregistered-form">
+                        <input type="text" id="comm_unregistered_user_id" hidden>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group hideable">
+                                    <label class="control-label" for="comm_unregistered_firstname">Firstname</label>
+                                        <input type="text" class="form-control" id="comm_unregistered_firstname" name="comm_unregistered_firstname" placeholder="Enter firstname" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group hideable">
+                                    <label class="control-label" for="comm_unregistered_lastname">Lastname</label>
+                                        <input type="text" class="form-control" id="comm_unregistered_lastname" name="comm_unregistered_lastname" placeholder="Enter lastname" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group hideable">
+                                    <label class="control-label" for="comm_unregistered_middlename">Middlename</label>
+                                        <input type="text" class="form-control" id="comm_unregistered_middlename" name="comm_unregistered_middlename" placeholder="Enter middlename" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group hideable">
+                                    <label class="control-label" for="comm_unregistered_nickname">Nickname</label>
+                                        <input type="text" class="form-control" id="comm_unregistered_nickname" name="comm_unregistered_nickname" placeholder="Enter nickname" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group hideable">
+                                    <label class="control-label" for="comm_unregistered_salutation">Salutation</label>
+                                        <input type="text" class="form-control" id="comm_unregistered_salutation" name="comm_unregistered_salutation" placeholder="Enter salutation" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group hideable">
+                                    <label class="control-label" for="comm_unregistered_gender">Gender</label>
+                                        <input type="text" class="form-control" id="comm_unregistered_gender" name="comm_unregistered_gender" placeholder="Enter gender" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group hideable">
+                                    <label class="control-label" for="comm_unregistered_birthdate">Birthdate</label>
+                                    <div class="input-group date datetime">
+                                        <input type="text" class="form-control birthdate" id="comm_unregistered_birthdate" name="comm_unregistered_birthdate" placeholder="Enter birthdate" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group hideable">
+                                    <label class="control-label" for="comm_unregistered_active_status">Contact Active Status</label>
+                                    <select class="form-control" id="comm_unregistered_active_status" name="comm_unregistered_active_status">
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group hideable">
+                                    <label class="control-label" for="comm_unregistered_ewi_recipient">Early Warning Information Recipient:</label>
+                                    <select class="form-control" id="comm_unregistered_ewi_recipient" name="comm_unregistered_ewi_recipient">
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                  <div class="row" id="unregistered-org-and-site-alert" hidden>
+                    <div class="col-sm-offset-3 col-sm-6">
+                        <div class="alert alert-info" role="alert">
+                            Please select at least one in <b id="unregistered-selection-feedback"></b>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="panel-group" id="accordion">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4 class="panel-title" style="text-align: center;">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#unregistered-site-accord">Site Selection</a>
+                          </h4>
+                        </div>
+                        <div id="unregistered-site-accord" class="panel-collapse collapse">
+                          <div class="panel-body">
+                            <div id="unregistered-site-selection-div">
+                                <div id="unregistered-sitenames-cc-0" class="col-md-2 col-sm-2 col-xs-2"></div>
+                                <div id="unregistered-sitenames-cc-1" class="col-md-2 col-sm-2 col-xs-2"></div>
+                                <div id="unregistered-sitenames-cc-2" class="col-md-2 col-sm-2 col-xs-2"></div>
+                                <div id="unregistered-sitenames-cc-3" class="col-md-2 col-sm-2 col-xs-2"></div>
+                                <div id="unregistered-sitenames-cc-4" class="col-md-2 col-sm-2 col-xs-2"></div>
+                                <div id="unregistered-sitenames-cc-5" class="col-md-2 col-sm-2 col-xs-2"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                          <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4 class="panel-title" style="text-align: center;">
+                            <a data-toggle="collapse" data-parent="#accordion" data-target="#unregistered-org-accord">Organization Selection</a>
+                          </h4>
+                        </div>
+                        <div id="unregistered-org-accord" class="panel-collapse collapse">
+                          <div class="panel-body">
+                            <div id="unregistered-organization-selection-div">
+                                <div id="unregistered-orgs-cc-0" class="col-md-3 col-sm-3 col-xs-3"></div>
+                                <div id="unregistered-orgs-cc-1" class="col-md-3 col-sm-3 col-xs-3"></div>
+                                <div id="unregistered-orgs-cc-2" class="col-md-3 col-sm-3 col-xs-3"></div>
+                                <div id="unregistered-orgs-cc-3" class="col-md-3 col-sm-3 col-xs-3"></div>
+                                <div id="unregistered-orgs-cc-4" class="col-md-3 col-sm-3 col-xs-3"></div>
+                                <div id="unregistered-orgs-cc-5" class="col-md-3 col-sm-3 col-xs-3"></div>
+                                <div id="unregistered-orgs-cc-6" class="col-md-3 col-sm-3 col-xs-3"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-primary btn-xs" id="comm_unregistered_add_mobile"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  Mobile Number</button>
+                        <button type="button" class="btn btn-primary btn-xs" id="comm_unregistered_add_landline"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  Landline Number</button>
+                    </div>
+                    <div id="comm_unregistered_mobile_div">
+                    </div>
+                    <hr>
+                    <div id="comm_unregistered_landline_div">
+                    </div>
+                  <hr>
+                  <div class="right-content">
+                    <button class="btn btn-danger" id="comm_unregistered_clear" >Reset</button>
+                    <button type="submit" value="submit" class="btn btn-primary" id="comm_unregistered_save">Save</button>
+                  </div>
+                </form>
+                </div>
+              </div>
+            </div>
+
+            
+
+        </div>
+
         <table id="emp-response-contact-container" class="display table table-striped" cellspacing="0" width="100%" hidden>
           <thead>
             <tr>
@@ -790,18 +1079,19 @@
           </thead>
         </table>
 
-        <!-- <table id="unregistered-contact-container" class="display table table-striped" cellspacing="0" width="100%">
+        <table id="unregistered-contact-container" class="display table table-striped" cellspacing="0" width="100%" hidden>
           <thead>
             <tr>
             </tr>
           </thead>
         </table>
 
-        <div id="unregistered-wrapper">
-            <form id="unregistered-form">
-                <b>UNREGISTERED FORM</b>
-            </form>
-        </div> -->
+         <table id="datalogger-contact-container" class="display table table-striped" cellspacing="0" width="100%" hidden>
+          <thead>
+            <tr>
+            </tr>
+          </thead>
+        </table>
 
         <div id="employee-contact-wrapper" hidden>
             <form id="employee-contact-form">
@@ -1150,6 +1440,24 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="bug-report-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Enable Bug Report</h4>
+        </div>
+        <div class="modal-body">
+            <button type="button" class="btn btn-primary btn-block" id="enable-bug-report-button">Enable</button>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+</div>
+
 
 <script src="/js/dewslandslide/communications_beta/initializer.js"></script>
 <script src="/js/dewslandslide/communications_beta/cbx_main.js"></script>

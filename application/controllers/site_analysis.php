@@ -3,7 +3,7 @@ class Site_analysis extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->helper('url');
+		$this->load->helper(array('url', 'account_helper'));
         $this->load->model('sites_model');
         $this->load->model('surficial_model');
         $this->load->model('subsurface_column_model');
@@ -14,7 +14,8 @@ class Site_analysis extends CI_Controller {
     }
 
 	public function index () {
-		$this->is_logged_in();
+		is_logged_in($this->session->userdata('is_logged_in'));
+        
 		$page = 'Integrated Site Analysis';
 		$data['first_name'] = $this->session->userdata('first_name');
 		$data['last_name'] = $this->session->userdata('last_name');
@@ -994,17 +995,6 @@ class Site_analysis extends CI_Controller {
 
         // var_dump(json_decode($web_plots_data));
         return $python_data;
-    }
-
-    public function is_logged_in () {
-        $is_logged_in = $this->session->userdata('is_logged_in');
-        
-        if(!isset($is_logged_in) || ($is_logged_in !== TRUE)) {
-            echo 'You don\'t have permission to access this page. <a href="../login">Login</a>';
-            die();
-        }
-        else {
-        }
     }
 
     /**

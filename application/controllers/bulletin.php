@@ -6,7 +6,6 @@
 
 		public function __construct() {
 			parent::__construct();
-			//$this->is_logged_in();
 			$this->load->helper('url');
 			$this->load->model('bulletin_model');
 			$this->load->model('users_model');
@@ -310,19 +309,6 @@
 			
 			echo $response;
 		}
-
-		public function is_logged_in() 
-		{
-			$is_logged_in = $this->session->userdata('is_logged_in');
-			
-			if(!isset($is_logged_in) || ($is_logged_in !== TRUE)) {
-				echo 'You don\'t have permission to access this page. <a href="../login">Login</a>';
-				die();
-			}
-			else {
-			}
-		}
-
 	}
 
 ?>

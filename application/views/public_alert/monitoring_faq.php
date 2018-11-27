@@ -32,9 +32,9 @@
         <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">
-                    DEWS-Landslide Early Warning Information <br><small>Monitoring Primer and Frequently Asked Questions (FAQ)</small>
-                </h1>
+                <div id="page-header">
+                    Site Alert Monitoring <small>Primer and Frequently Asked Questions (FAQ)</small>
+                </div>
             </div>
         </div>
         <!-- /.row -->

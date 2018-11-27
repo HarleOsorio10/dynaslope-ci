@@ -34,6 +34,12 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading"><strong>FILTERS</strong></div>
 			<div class="panel-body filters-div">
+				<div class="form-group hideable">
+					<label class="control-label" for="site-code">Site Code</label>
+					<select class="form-control" id="site-code" name="site-code">
+						<option value="">---</option>
+                    </select>
+                </div>				
 				<div class="form-group"> <!-- has-success -->
 					<label class="control-label" for="start-time">Start Time Filter</label>
                     <div class="input-group date datetime">

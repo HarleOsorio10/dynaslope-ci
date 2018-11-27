@@ -6,22 +6,23 @@
 
 		public function __construct() {
 			parent::__construct();
-			//$this->is_logged_in();
-			$this->load->helper('url');
+			$this->load->helper(array('url', 'account_helper'));
 			$this->load->model('issues_model');
 		}
 
 		public function index()
 		{
-			$data['title'] = 'DEWS-L Monitoring Issues And Reminders Page';
+			is_logged_in($this->session->userdata('is_logged_in'));
+			
+			$data['title'] = 'Issues And Reminders - Site Alert Monitoring';
 			$data['first_name'] = $this->session->userdata('first_name');
 			$data['last_name'] = $this->session->userdata('last_name');
 			$data['user_id'] = $this->session->userdata("id");
 
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/nav');
+			$this->load->view('templates/beta/header', $data);
+			$this->load->view('templates/beta/nav');
 			$this->load->view('public_alert/issues_and_reminders_page', $data);
-			$this->load->view('templates/footer');
+			$this->load->view('templates/beta/footer');
 		}
 
 		public function modal()
@@ -202,18 +203,6 @@
 			);
 
 			$this->issues_model->update_row("iar_id", $post->iar_id, "issues_and_reminders", $data);
-		}
-
-		public function is_logged_in() 
-		{
-			$is_logged_in = $this->session->userdata('is_logged_in');
-			
-			if(!isset($is_logged_in) || ($is_logged_in !== TRUE)) {
-				echo 'You don\'t have permission to access this page. <a href="../login">Login</a>';
-				die();
-			}
-			else {
-			}
 		}
 
 	}

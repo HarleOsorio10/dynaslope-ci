@@ -5,14 +5,14 @@ class Monitoring extends CI_Controller
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->helper('url');
+		$this->load->helper(array('url', 'account_helper'));
 		$this->load->model('monitoring_model');
 		$this->load->model('sites_model');
 		$this->load->model('users_model');
 	}
 
 	public function index () {
-		$this->is_logged_in();
+		is_logged_in($this->session->userdata('is_logged_in'));
 
 		$data['title'] = 'Dashboard - Site Alert Monitoring';
 		$data['first_name'] = $this->session->userdata('first_name');
@@ -154,17 +154,6 @@ class Monitoring extends CI_Controller
 		echo json_encode($this->users_model->getDEWSLUsers($include_inactive));
 	}
 
-	public function is_logged_in() 
-	{
-		$is_logged_in = $this->session->userdata('is_logged_in');
-		
-		if(!isset($is_logged_in) || ($is_logged_in !== TRUE)) {
-			echo 'You don\'t have permission to access this page. <a href="../login">Login</a>';
-			die();
-		}
-		else {
-		}
-	}
 }
 
 /* End of file monitoring.php */

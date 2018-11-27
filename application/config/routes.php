@@ -45,7 +45,7 @@ $route['home'] = "monitoring/index";
 $route['dashboard'] = "monitoring/index";
 $route['monitoring/release_form'] = "pubrelease/index/alert_release_form";
 $route['monitoring/events'] = "pubrelease/index/monitoring_events_all";
-$route['monitoring/events/(:num)/(:num)'] = "pubrelease/index/monitoring_events_individual/$1/$2";
+$route['monitoring/events/(:num)/(:any)'] = "pubrelease/index/monitoring_events_individual/$1/$2";
 $route['monitoring/events/(:num)'] = "pubrelease/index/monitoring_events_individual/$1";
 $route['monitoring/faq'] = "pubrelease/index/monitoring_faq";
 
@@ -129,7 +129,6 @@ $route['analysis/rainfall_summary'] = "rainfall_scanner";
  * Data Analysis Pages Routes
  */
 // Commons
-$route['site_info/index'] = "site_info/index";
 
 $route['general_data_tagging/index'] = "general_tagging/index";
 $route['general_data_tagging/add_gen_tag'] = "general_tagging/addNewGeneralDataTag";
@@ -154,9 +153,12 @@ $route['staff/change_profile_pic'] = "staff_profile/changeProfilePic";
 
 $route['site_info/index'] = "site_info/index";
 
+$route['feedback/submit'] = "chatterbox_v2/getFeedbackData";
+
 $route['default_controller'] = "account_controller";
 $route['login'] = "account_controller";
 $route['404_override'] = "error_custom_404";
+$route['session_expired'] = "account_controller/get_session_expired";
 
 
 /* End of file routes.php */
