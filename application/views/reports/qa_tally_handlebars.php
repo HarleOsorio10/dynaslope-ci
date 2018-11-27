@@ -34,6 +34,9 @@
                         <div>
                             <span>Actual Ground Measurement Reminder sent : <strong>{{gndmeas_reminder_actual}}</strong></span>
                         </div>
+                        <div>
+                            <span>EWI Acknowledgement Received: <strong>{{ewi_ack}}</strong></span>
+                        </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="text-center"><strong>Default Recipients</strong></div>
@@ -93,6 +96,9 @@
                     </div>
                     <div>
                         <span>Actual Ground Measurement Reminder sent : <strong>{{gndmeas_reminder_actual}}</strong></span>
+                    </div>
+                    <div>
+                        <span>EWI Acknowledgement Received: <strong>{{ewi_ack}}</strong></span>
                     </div>
                 </div>
                 <div class="col-sm-4">
