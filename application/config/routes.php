@@ -155,6 +155,7 @@ $route['staff/change_profile_pic'] = "staff_profile/changeProfilePic";
 $route['qa_tally/'] = "qa_tally/index";
 $route['qa_tally/evaluate_site'] = "qa_tally/evaluateSite";
 $route['qa_tally/saved_settings'] = "qa_tally/getDailyRecordForEvent";
+$route['qa_tally/recorded_settings'] = "qa_tally/getRecordForSelectedDateRange";
 $route['qa_tally/event_default'] = "qa_tally/getEventDefaultData";
 $route['qa_tally/extended_default'] = "qa_tally/getExtendedDefaultData";
 $route['qa_tally/get_default_recipients'] = "qa_tally/getDefaultRecipients";
