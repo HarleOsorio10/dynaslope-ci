@@ -688,20 +688,10 @@ class Pubrelease extends CI_Controller {
 	 * Controller functions for monitoring events history
 	 *
 	 * @author John Louie Nepomuceno
-	 **/	
-	// public function getEventsPerAlertLevelHistory($alert_level, $start_time, $end_time) {
-	// 	$result = $this->public_alert_event_model->getEventsPerAlertLevelHistory($alert_level, $start_time, $end_time);		
-	// 	echo json_encode($result);
-	// }
+	 **/
 
 	public function getEventsBasedOnDate($start_time, $end_time) {
 		$result = $this->public_alert_event_model->getEventsBasedOnDate($start_time, $end_time);
-		echo json_encode($result);
-	}
-
-	public function getAllSites() {
-		// $result = $this->sites_model->getCompleteSiteInformation("all",true);
-		$result = $this->sites_model->getSites();
 		echo json_encode($result);
 	}
 	// End of controller functions for monitoring events history
