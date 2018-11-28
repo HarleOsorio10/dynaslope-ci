@@ -78,4 +78,85 @@ class Public_Alert_Event_Model extends CI_Model
 
 		return $result->row()->status;
 	}	
+
+	/**
+	 * 	@author John Louie Nepomuceno
+	 **/
+	public function getEventsPerAlertLevelHistory($alert_level, $start_time, $end_time) {
+		$filter = "";
+		if($alert_level != null && $alert_level != "" && $alert_level != "ALL") {
+			$filter = $filter . " AND par.internal_alert_level LIKE '" . $alert_level . "%'";
+		}
+		if($start_time != null && $start_time != "" && $end_time != null && $end_time != "") {
+			$filter = $filter . " AND par.data_timestamp >= '" . $start_time . "'";
+			$filter = $filter ." AND par.data_timestamp < '" . $end_time . "'";
+		}
+
+		$sql = "SELECT 
+					sites.site_code, par.*
+				FROM 
+					public_alert_release AS par
+				RIGHT JOIN 
+					(SELECT 
+							pae.event_id AS event, pae.site_id 
+						FROM 
+							public_alert_event AS pae 
+						WHERE 
+							pae.status NOT IN ('invalid', 'routine')
+					) AS eventlist
+				ON 
+					eventlist.event = par.event_id
+				RIGHT JOIN 
+					sites 
+				ON 
+					eventlist.site_id = sites.site_id
+				WHERE 
+					par.data_timestamp = (
+						SELECT MAX(par2.data_timestamp)
+		                FROM public_alert_release AS par2
+		                WHERE par.event_id = par2.event_id AND par2.internal_alert_level NOT IN ('ND','A0')
+		            )";
+		$final_sql = $sql . $filter;
+		$query = $this->db->query($final_sql); 
+		return $query->result();
+	}
+
+	/**
+	 *	@author John Louie Nepomuceno
+	 **/
+	public function getEventsBasedOnDate($start_time, $end_time) {
+		$filter = "";
+		if($start_time != null && $start_time != "" && $end_time != null && $end_time != "") {
+			$filter = $filter . " AND par.data_timestamp >= '" . $start_time . "'";
+			$filter = $filter ." AND par.data_timestamp < '" . $end_time . "'";
+		}
+
+		$sql = "SELECT 
+					sites.site_code, par.*, LEFT(par.internal_alert_level, 2) AS public_alert_level
+				FROM 
+					public_alert_release AS par
+				RIGHT JOIN 
+					(SELECT 
+							pae.event_id AS event, pae.site_id 
+						FROM 
+							public_alert_event AS pae 
+						WHERE 
+							pae.status NOT IN ('invalid', 'routine')
+					) AS eventlist
+				ON 
+					eventlist.event = par.event_id
+				RIGHT JOIN 
+					sites 
+				ON 
+					eventlist.site_id = sites.site_id
+				WHERE 
+					par.data_timestamp = (
+						SELECT MAX(par2.data_timestamp)
+		                FROM public_alert_release AS par2
+		                WHERE par.event_id = par2.event_id AND par2.internal_alert_level NOT IN ('ND','A0')
+		            )";
+		$final_sql = $sql . $filter;
+		$query = $this->db->query($final_sql); 
+		return $query->result();	
+	}
 }

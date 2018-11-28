@@ -26,7 +26,7 @@ class Pubrelease extends CI_Controller {
 		switch ($page)
 		{
 			case 'alert_release_form':
-				$data['title'] = "Early Warning Info Release Form - Site Alert Monitoring";
+				$data['title'] = "DEWS-Landslide Early Warning Release Form";
 				$data['sites'] = json_encode($this->sites_model->getActiveSites());
 				$data['staff'] = json_encode($this->users_model->getDEWSLUsers());
 				$data['active'] = json_encode($this->public_alert_event_model->getOnGoingAndExtendedSitesAndStatus());
@@ -45,7 +45,7 @@ class Pubrelease extends CI_Controller {
 				 	break;
 				}
 
-				$data['title'] = "Event Timeline - Site Alert Monitoring";
+				$data['title'] = "DEWS-Landslide Individual Monitoring Event Page";
 				$data['releases'] = json_encode($this->pubrelease_model->getAllRelease($id));
 				$data['triggers'] = $this->pubrelease_model->getAllEventTriggers($id);
 				$data['staff'] = json_encode($this->users_model->getDEWSLUsers());
@@ -53,10 +53,14 @@ class Pubrelease extends CI_Controller {
 				break;
 
 			case 'monitoring_events_all':			
-				$data['title'] = "Events Table - Site Alert Monitoring";
+				$data['title'] = "DEWS-Landslide Monitoring Events Table";
+
+				// Load Site Alert History Views
+				$data['alert_current'] = $this->load->view('public_alert/monitoring_events_all_current', null, true);
+				$data['alert_history'] = $this->load->view('public_alert/monitoring_events_all_history', null, true);		
 				break;
 
-			case 'monitoring_faq': $data['title'] = "Manuals, Primer, & FAQ - Site Alert Monitoring";
+			case 'monitoring_faq': $data['title'] = "DEWS-Landslide Monitoring FAQ";
 		}
 
 		$this->load->view('templates/beta/header', $data);
@@ -677,6 +681,18 @@ class Pubrelease extends CI_Controller {
 			$mem->set("cachedpralldirty", true) or die ("couldn't save dirty flag");
 		}
 	}
+
+	/**
+	 * Controller functions for monitoring events history
+	 *
+	 * @author John Louie Nepomuceno
+	 **/
+
+	public function getEventsBasedOnDate($start_time, $end_time) {
+		$result = $this->public_alert_event_model->getEventsBasedOnDate($start_time, $end_time);
+		echo json_encode($result);
+	}
+	// End of controller functions for monitoring events history
 }
 
 /* End of file pubrelease.php */
