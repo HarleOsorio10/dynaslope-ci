@@ -13,8 +13,6 @@ class Pubrelease extends CI_Controller {
 		$this->load->model('manifestations_model');
 		$this->load->model('lut_model');
 		$this->load->library('../controllers/monitoring');
-
-		global $site_per_alert_count;
 	}
 
 	public function index($page)
