@@ -390,50 +390,59 @@
           </div>
           <div class="modal-body row-fluid">
             <div class="ewi-container">
-              <div class="row">
-                <div class="col-sm-3">
-                  <div class="form-group" id="site-group">
-                    <label for="sites">Sites :</label>
-                    <select name="" id="sites" name="sites" class="form-control">
-                    </select>
-                  </div>
-                </div>
-                <div class="col-sm-3">
-                  <div class="form-group" id="site-group">
-                    <label for="alert_status">Alert Status :</label>
-                    <select name="" id="alert_status" name="alert_status" class="form-control">
-                    </select>
-                  </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                  <label for="ewi-date-picker">Time of release :</label>
-                    <div class='input-group date' id='ewi-date-picker'>
-                        <input type='text' class="form-control" />
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+                
+            <ul class="nav nav-tabs nav-justified">
+                <li class="active pointer"><a data-toggle="tab" href="#alert_temp">Alert Status</a></li>
+                <li  class="pointer"><a data-toggle="tab" href="#rainfall_temp">Rainfall Information</a></li>
+            </ul>
+              <br>
+              <div class="tab-content">
+                <div id="alert_temp" class="tab-pane fade in active">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <div class="form-group" id="site-group">
+                        <label for="sites">Sites :</label>
+                        <select name="" id="sites" name="sites" class="form-control">
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group" id="site-group">
+                        <label for="alert_status">Alert Status :</label>
+                        <select name="" id="alert_status" name="alert_status" class="form-control">
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                      <label for="ewi-date-picker">Time of release :</label>
+                        <div class='input-group date' id='ewi-date-picker'>
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group" id="alert-group">
-                    <label for="alert-lvl">Alert Level :</label>
-                    <select name="" id="alert-lvl" class="form-control">
-                    </select>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group" id="alert-group">
+                        <label for="alert-lvl">Alert Level :</label>
+                        <select name="" id="alert-lvl" class="form-control">
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group" id="alert-group">
+                        <label for="internal-alert">Internal Alert :</label>
+                        <select name="" id="internal-alert" class="form-control">
+                        </select>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="form-group" id="alert-group">
-                    <label for="internal-alert">Internal Alert :</label>
-                    <select name="" id="internal-alert" class="form-control">
-                    </select>
-                  </div>
-                </div>
               </div>
-              <hr>
+              <div id="rainfall_temp" class="tab-pane fade in ">
                 <div class="row">
                   <div class="col-sm-6">
                           <div class="form-group" id="#">
@@ -465,6 +474,10 @@
                         </select>
                     </div>
                 </div>
+            </div>
+            </div>
+            
+              
             </div>
           </div>
             <div class="modal-footer">
