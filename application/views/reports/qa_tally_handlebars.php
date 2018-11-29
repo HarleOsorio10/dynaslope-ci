@@ -117,7 +117,6 @@
                 </div>
                 </small>
             </div>
-            <span>{{status}}</span>
             {{#if status}}
             {{else}}
                 <div class="row">
