@@ -37,7 +37,7 @@
 		                    <span class="dropdown-header">Miscellaneous</span>
 		                    <a href="<?php echo base_url(); ?>monitoring/faq">Manuals, Primer, and FAQs</a>
 		                    <a href="<?php echo base_url(); ?>monitoring/issues_and_reminders">Monitoring Issues and Reminders</a>
-		                    <a href="<?php echo base_url(); ?>gintags/manager">GINTAGs Manager</span></a>
+		                    <a href="<?php echo base_url(); ?>general_data_tagging/index">General Data Tagging</span></a>
 		                    <a href="<?php echo base_url(); ?>site_info/index">Site information</span></a>
 		                </div>
 		        	</li>
