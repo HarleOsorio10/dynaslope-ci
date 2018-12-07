@@ -729,6 +729,7 @@
                   <p>Select Site Names:
                     <button id="checkAllSitenames" type="button" class="btn btn-primary btn-xs">Check All</button>
                     <button id="uncheckAllSitenames" type="button" class="btn btn-info btn-xs">Uncheck All</button>
+                    <button id="checkAllRoutines" type="button" class="btn btn-success btn-xs">Check All Routine Sites</button>
                   </p>
                   <div id="modal-select-sitenames">
                     <div id="sitenames-0" class="col-md-2 col-sm-2 col-xs-2"></div>
