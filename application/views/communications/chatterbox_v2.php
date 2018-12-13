@@ -344,6 +344,7 @@
                             </div>
                             <div class="col-sm-3 text-right">
                                 <span class="pointer bug fa fa-bug" id="report-conversation" hidden></span>
+                                <button id="add-unknown" type="button" class="btn btn-success btn-xs">Save to Contacts</button>
                                 <span id="go-to-recent-activity" class="pointer fa fa-hourglass" title="Recent Activity"></span>
                             </div>
                         </div>
@@ -780,7 +781,7 @@
     <div class="modal-body row-fluid">
       <div class="contact-settings-container">
 
-        <div class="row">
+        <div class="row" id="contact-settings-options">
           <div class="col-md-6 form-group">
             <label for="contact-category">Contact Category</label>
             <select id="contact-category" class="btn btn-default form-control" name="contact-category" title="Contact Category">
