@@ -1401,7 +1401,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group hideable">
-                    <label class="control-label" for="gintag_selected">Sites to be tagged</label>
+                    <label class="control-label" for="gintag_selected">Site(s) to be tagged</label>
                     <div id="tag_sites" class="row"></div>
                 </div>
             </div>
