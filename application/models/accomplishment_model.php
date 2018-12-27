@@ -48,6 +48,38 @@ class Accomplishment_Model extends CI_Model
 		return $result;
 	}
 	
+	public function getReleasesByStaff($staff_id, $month = null) {
+		$this->db->select("
+			par.release_id, par.event_id, 
+		    par.data_timestamp, par.internal_alert_level,
+		    par.reporter_id_mt, u_mt.firstname AS mt,
+		    par.reporter_id_ct, u_ct.firstname AS ct,
+		    pae.status, pae.event_id,
+			sites.site_code"
+		);
+		// $this->db->select("
+		// 	par.release_id, par.event_id, 
+  //   		par.data_timestamp, par.internal_alert_level,
+  //   		par.reporter_id_mt, 
+  //   		par.reporter_id_ct, 
+  //   		pae.status, pae.event_id,
+		// 	sites.site_code"
+		// );		
+		$this->db->from("public_alert_release AS par");
+		$this->db->join("public_alert_event AS pae", "pae.event_id = par.event_id");
+		$this->db->join("sites", "pae.site_id = sites.site_id");
+		$this->db->join("comms_db.users AS u_mt", "par.reporter_id_mt = u_mt.user_id");
+		$this->db->join("comms_db.users AS u_ct", "par.reporter_id_ct = u_ct.user_id");
+		$this->db->where("pae.status !=", "routine");
+		$this->db->where("pae.status !=", "extended");
+		$this->db->where("pae.status !=", "invalid");
+		// $this->db->where_in("status !=", ["routine", "extended", "invalid"]);
+		$this->db->where("reporter_id_mt = '$staff_id' OR reporter_id_ct = '$staff_id'");
+		$this->db->order_by("data_timestamp", "desc");
+		$query = $this->db->get();
+		$result = $query->result_array();
+		return $result;
+	}
 }
 
 ?>
