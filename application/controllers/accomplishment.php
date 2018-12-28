@@ -51,8 +51,8 @@
 			echo json_encode($data);
 		}
 
-		public function getReleasesByStaff($staff_id, $month = null) {
-			$data = $this->accomplishment_model->getReleasesByStaff($staff_id, $month);
+		public function getReleasesByStaff($staff_id, $start = null, $end = null) {
+			$data = $this->accomplishment_model->getReleasesByStaff($staff_id, $start, $end);
 			echo json_encode($data);
 		}
 

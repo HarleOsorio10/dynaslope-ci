@@ -27,6 +27,12 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-md-12">
+                <p>Note: For searching shifts via staff name, please provide a start date first then modify the end date.</p>
+            </div>
+        </div>
+
         <!-- Form Panel -->
         <form role="form" id="checkerForm" method="get">
             <div class="row">

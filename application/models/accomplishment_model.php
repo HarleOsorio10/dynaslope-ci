@@ -48,7 +48,7 @@ class Accomplishment_Model extends CI_Model
 		return $result;
 	}
 	
-	public function getReleasesByStaff($staff_id, $month = null) {
+	public function getReleasesByStaff($staff_id, $start = null, $end = null) {
 		$this->db->select("
 			par.release_id, par.event_id, 
 		    par.data_timestamp, par.internal_alert_level,
@@ -75,6 +75,12 @@ class Accomplishment_Model extends CI_Model
 		$this->db->where("pae.status !=", "invalid");
 		// $this->db->where_in("status !=", ["routine", "extended", "invalid"]);
 		$this->db->where("reporter_id_mt = '$staff_id' OR reporter_id_ct = '$staff_id'");
+
+		if($start != null && $start != "" && $end != null && $end != "") {
+			$this->db->where("data_timestamp >", $start);
+			$this->db->where("data_timestamp <", $end);
+		}
+
 		$this->db->order_by("data_timestamp", "desc");
 		$query = $this->db->get();
 		$result = $query->result_array();
