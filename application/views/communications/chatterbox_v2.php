@@ -1407,7 +1407,6 @@
             </div>
             <div class="col-sm-12" id="tag_selected_container">
                 <div class="form-group hideable">
-                    <label class="control-label" for="gintag_selected">Tags</label><span id="enable-tag-deletion" class="pointer fa fa-trash-alt" title="Enable Delete Tag"></span>
                     <input type="text" class="form-control" data-provide="typeahead" id="gintag_selected" name="gintag_selected" placeholder="E.g #EwiMessage" required />
                 </div>
             </div>
@@ -1421,7 +1420,6 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" id="confirm-tagging">Confirm</button>
-        <button type="button" class="btn btn-primary" id="confirm-delete-tag" hidden>Delete Tag</button>
       </div>
     </div>
   </div>
