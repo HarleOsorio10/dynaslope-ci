@@ -1271,7 +1271,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group hideable">
                             <label class="control-label" for="birthdate_cc">Birthdate</label>
                             <div class="input-group date datetime">
@@ -1283,7 +1283,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group hideable">
                             <label class="control-label" for="active_status_cc">Contact Active Status</label>
                             <select class="form-control" id="active_status_cc" name="active_status_cc">
@@ -1293,13 +1293,19 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group hideable">
-                            <label class="control-label" for="ewirecipient_cc">Early Warning Information Recipient:</label>
+                            <label class="control-label" for="ewirecipient_cc">EWI Recipient:</label>
                             <select class="form-control" id="ewirecipient_cc" name="ewirecipient_cc">
                                 <option value="1">Yes</option>
                                 <option value="0">No</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group hideable">
+                            <label class="control-label" for="contact_priority">Contact Priority</label>
+                            <input type="number" class="form-control" id="contact_priority" name="contact_priority" placeholder="Contact Priority" />
                         </div>
                     </div>
                 </div>
