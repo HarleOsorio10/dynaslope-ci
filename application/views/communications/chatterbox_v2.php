@@ -1309,6 +1309,37 @@
                         </div>
                     </div>
                 </div>
+                <div class="row" id="contact-priority-panel" hidden>
+                    <div class="col-md-12">
+                        <div class="row" id="contact-priority-alert-message" hidden>
+                            <div class="col-md-offset-2 col-md-8">
+                                <div class="alert alert-info" role="alert">
+                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 
+                                    Multiple contact detected on user site. Do you want to check and edit ?<br>
+                                    <button type="button" class="btn btn-primary btn-xs" id="edit-priorities">Yes</button>
+                                    <button type="button" class="btn btn-primary btn-xs" id="cancel-priorities">No</button>
+                                </div>
+                            </div>    
+                        </div>
+                        
+                        <table class="table" id="contact-hierarchy-table-container" hidden>
+                            <thead>
+                                <tr>
+                                    <th>Site / Org</th>
+                                    <th>Name</th>
+                                    <th>Priority</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contact-hierarchy-table">
+                                <tr>
+                                    <td>Site / Org</td>
+                                    <td>Name</td>
+                                    <td>Priority</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
           <div class="row" id="org-and-site-alert" hidden>
             <div class="col-sm-offset-3 col-sm-6">
