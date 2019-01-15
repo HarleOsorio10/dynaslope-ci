@@ -1312,7 +1312,7 @@
                 <div class="row" id="contact-priority-panel" hidden>
                     <div class="col-md-12">
                         <div class="row" id="contact-priority-alert-message" hidden>
-                            <div class="col-md-offset-2 col-md-8">
+                            <div class="col-md-12">
                                 <div class="alert alert-info" role="alert">
                                     <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 
                                     Multiple contact detected on user site. Do you want to check and edit ?<br>
