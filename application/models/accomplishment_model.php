@@ -48,33 +48,33 @@ class Accomplishment_Model extends CI_Model
 		return $result;
 	}
 	
-	public function getReleasesByStaff($staff_id, $start = null, $end = null) {
-        $sql = "SELECT 
-                    *, 
-                    MAX(data_timestamp) as last_release_data_timestamp,
-                    MAX(release_id) as last_release_id  
-                FROM 
-                (
-                    SELECT
-                        par.event_id, par.release_id,
-                        par.data_timestamp, par.internal_alert_level,
-                        par.reporter_id_mt, par.reporter_id_ct,
-                        pae.status, sites.site_code
-                    FROM
-                        public_alert_release AS par
-                    INNER JOIN 
-                        public_alert_event AS pae
-                        ON pae.event_id = par.event_id
-                    INNER JOIN
-                        sites
-                        ON pae.site_id = sites.site_id
-                    WHERE pae.status != 'invalid'
-                    AND reporter_id_mt = '$staff_id' OR reporter_id_ct = '$staff_id'
-                ) AS table1
-                WHERE data_timestamp > '$start'
-                AND data_timestamp < '$end'
-                GROUP BY event_id, site_code, reporter_id_mt, reporter_id_ct 
-                ";
+	public function getReleasesByStaff($staff_id, $start, $end) {
+        // Convert strtime to datetime
+        $final_start = urldecode($start);
+        $final_end = urldecode($end);
+
+		$sql = "SELECT
+					-- data_timestamp, site_code, latest_release_id, 
+					-- internal_alert_level, shift_timestamp, 
+					-- validity, status, event_id, reporter_id_mt, reporter_id_ct
+                    *
+				from 
+					public_alert_event
+				inner join
+					(select *, TIMESTAMP(DATE(SUBTIME(data_timestamp, TIME_FORMAT('8:00', '%T'))), 
+					SEC_TO_TIME(((TIME(data_timestamp) NOT BETWEEN TIME_FORMAT('8:00', '%T') and TIME_FORMAT('19:59', '%T'))*12+8)*60*60)) as shift_timestamp
+					from public_alert_release
+					where data_timestamp between '$final_start' and '$final_end'
+					and (reporter_id_mt = $staff_id or reporter_id_ct = $staff_id)
+					order by data_timestamp
+					) as par
+				using (event_id)
+				inner join
+					sites 
+				using (site_id)
+                where (status != 'routine' or status != 'extended')
+				group by event_id, shift_timestamp
+				order by release_id desc";
 
         $result = $this->db->query($sql);
         return $result->result();
