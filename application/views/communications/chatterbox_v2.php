@@ -1271,7 +1271,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group hideable">
                             <label class="control-label" for="birthdate_cc">Birthdate</label>
                             <div class="input-group date datetime">
@@ -1283,7 +1283,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group hideable">
                             <label class="control-label" for="active_status_cc">Contact Active Status</label>
                             <select class="form-control" id="active_status_cc" name="active_status_cc">
@@ -1293,14 +1293,51 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group hideable">
-                            <label class="control-label" for="ewirecipient_cc">Early Warning Information Recipient:</label>
+                            <label class="control-label" for="ewirecipient_cc">EWI Recipient:</label>
                             <select class="form-control" id="ewirecipient_cc" name="ewirecipient_cc">
                                 <option value="1">Yes</option>
                                 <option value="0">No</option>
                             </select>
                         </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group hideable">
+                            <label class="control-label" for="contact_priority">Contact Priority</label>
+                            <input type="number" class="form-control" id="contact_priority" name="contact_priority" placeholder="Contact Priority" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="contact-priority-panel" hidden>
+                    <div class="col-md-12">
+                        <div class="row" id="contact-priority-alert-message" hidden>
+                            <div class="col-md-12">
+                                <div class="alert alert-info" role="alert">
+                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 
+                                    Multiple contact detected on user site. Do you want to check and edit ?<br>
+                                    <button type="button" class="btn btn-primary btn-xs" id="edit-priorities">Yes</button>
+                                    <button type="button" class="btn btn-primary btn-xs" id="cancel-priorities">No</button>
+                                </div>
+                            </div>    
+                        </div>
+                        
+                        <table class="table" id="contact-hierarchy-table-container" hidden>
+                            <thead>
+                                <tr>
+                                    <th>Site / Org</th>
+                                    <th>Name</th>
+                                    <th>Priority</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contact-hierarchy-table">
+                                <tr>
+                                    <td>Site / Org</td>
+                                    <td>Name</td>
+                                    <td>Priority</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
