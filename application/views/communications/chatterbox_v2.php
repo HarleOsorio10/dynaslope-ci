@@ -1314,8 +1314,8 @@
                         <div class="row" id="contact-priority-alert-message" hidden>
                             <div class="col-md-12">
                                 <div class="alert alert-info" role="alert">
-                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 
-                                    Multiple contact detected on user site. Do you want to check and edit ?<br>
+                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                    There's already a assigned priority on this contact, do you want to change it?<br>
                                     <button type="button" class="btn btn-primary btn-xs" id="edit-priorities">Yes</button>
                                     <button type="button" class="btn btn-primary btn-xs" id="cancel-priorities">No</button>
                                 </div>
