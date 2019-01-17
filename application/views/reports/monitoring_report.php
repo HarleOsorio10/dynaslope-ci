@@ -17,9 +17,12 @@
 <script src="<?php echo base_url(); ?>/js/third-party/bootstrap-tagsinput.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/third-party/bootstrap-tagsinput.css">
 
-<?php
-	$withAlerts = json_decode($withAlerts);
-?>
+<style>
+	#site-list {
+		max-height: 300px;
+		overflow-y: scroll;
+	}
+</style>
 
 <div id="page-wrapper">
 	<div class="container">
@@ -32,16 +35,15 @@
 	    </div>
 
 		<ul class="nav nav-tabs nav-justified">
-		 	<li class="active"><a data-toggle="tab" href="#narrativeTab"><strong>Narrative Report Form</strong></a></li>
+		 	<li class="active"><a data-toggle="tab" href="#narrative-tab"><strong>Narrative Report Form</strong></a></li>
 			<li><a data-toggle="tab" href="#generatorTab"><strong>End-of-Shift Report Generator</strong></a></li>
 		</ul>
 
 		<div class="tab-content">
-			<div id="narrativeTab" class="tab-pane fade in active">
-				<br/>
-				
+			<div id="narrative-tab" class="tab-pane fade in active">
+				<br/>		
 				<div class="row">
-					<form role="form" id="narrativeForm" method="get">
+					<form role="form" id="narrative-form" method="get">
 						<div class="col-sm-6">
 							<div class="row">
 					        	<div class="form-group col-sm-12">
@@ -52,16 +54,21 @@
 							      			<button id="clear-sites" type="button" class="btn btn-primary" title="Clear site selection"><span class="fa fa-eraser"></span></button>
 							        		<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="site-button" style="margin-left: 0;"><span class="caret"></span></button>
 							        		<ul class="dropdown-menu dropdown-menu-right" id="site-list">
-							        			<?php foreach ($withAlerts as $site): ?>
-							        				<li><a class="small" tabIndex="-1" data-value="<?php echo strtoupper($site->name); ?>" data-event="<?php echo strtoupper($site->event_id); ?>">
-
-							        				<?php if ($site->sitio == null) $address = "$site->barangay, $site->municipality, $site->province";
-						        						else $address = "$site->sitio, $site->barangay, $site->municipality, $site->province"; ?>
-
-						        					<input type="checkbox" class="site-checkbox"/>&nbsp;
-						                            <?php echo strtoupper($site->name) . " (" . $address . ")"; ?>
-						                            
-						                            </a></li>
+							        			<?php foreach ($sites as $site): ?>
+							        				<?php
+							        					$event_id = isset($site->event_id) ? $site->event_id : "none";
+							        					$event_status = isset($site->status) ? "alert-" . $site->status : "routine";
+							        				?>
+							        				<li class="<?php echo $event_status; ?>">
+							        					<a class="small" tabIndex="-1" data-value="<?php echo strtoupper($site->site_code); ?>" data-event="<?php echo $event_id; ?>" data-site="<?php echo $site->site_id; ?>">
+							        						<?php
+							        							if ($site->sitio == null) $address = "$site->barangay, $site->municipality, $site->province";
+							        							else $address = "$site->sitio, $site->barangay, $site->municipality, $site->province";
+							        						?>
+							        						<input type="checkbox" class="site-checkbox"/>&nbsp;
+							        						<?php echo strtoupper($site->site_code) . " (" . $address . ")"; ?>
+							        					</a>
+							        				</li>
 							        			<?php endforeach; ?>
 							        		</ul>
 							      		</div>
@@ -70,7 +77,7 @@
 							</div>
 
 							<div class="row">
-								<div class="col-sm-6">
+								<div class="form-group col-sm-6">
 						            <label class="control-label" for="timestamp_date">Date</label>
 						            <div class='input-group date datetime timestamp_date'>
 						                <input type='text' class="form-control" id="timestamp_date" name="timestamp_date" placeholder="Enter timestamp" />
@@ -80,7 +87,7 @@
 						            </div>        
 					          	</div>
 
-					          	<div class="col-sm-6">
+					          	<div class="form-group col-sm-6">
 						            <label class="control-label" for="timestamp_time">Time</label>
 						            <div class='input-group date datetime timestamp_time'>
 						                <input type='text' class="form-control" id="timestamp_time" name="timestamp_time" placeholder="Enter timestamp" />
@@ -110,7 +117,7 @@
 
 		        <div class="table-responsive">
 		        	<hr class="inner-hr">          
-	                <table class="table" id="narrativeTable">
+	                <table class="table" id="narrative-table">
 	                    <thead>
 	                        <tr>
 	                        	<th class="col-sm-1">Event</th>
@@ -132,7 +139,7 @@
 	              </table>
 	            </div>
 
-	            <div class="modal fade" id="editModal" role="dialog">
+	            <div class="modal fade" id="edit-modal" role="dialog">
 			        <div class="modal-dialog modal-md">
 			            <!-- Modal content-->
 			            <div class="modal-content">
@@ -141,7 +148,7 @@
 			                    <h4 class="modal-title">Individual Narrative Entry Edit</h4>
 			                </div>
 
-			                <form id="editForm" name='form' role='form'>
+			                <form id="edit-narrative-form" name='form' role='form'>
 			                <div class="modal-body">
 			                	<div class="row delete-warning">
 			                        <div class="col-sm-10 col-sm-offset-1">
@@ -172,14 +179,14 @@
 			                    <div class="row">
 			                        <div class="form-group col-sm-12">
 			                            <label for="narrative_edit">Narrative</label>
-			                            <textarea class="form-control" rows="3" id="narrative_edit" name="narrative_edit" maxlength="500"></textarea>
+			                            <textarea class="form-control" rows="3" id="narrative_edit" name="narrative_edit" maxlength="1000"></textarea>
 			                        </div>
 			                    </div>
 			                </div>
 			                <div class="modal-footer">
-			                    <button id="cancel" class="btn btn-info" data-dismiss="modal" role="button">Cancel</button>
 			                    <button id="update" class="btn btn-primary" role="button" type="submit">Update</button>
 			                    <button id="delete" class="btn btn-danger delete-warning" data-dismiss="modal" role="button">Delete</button>
+			                    <button id="cancel" class="btn" data-dismiss="modal" role="button">Cancel</button>
 			                </div>
 			                </form>
 			            </div>
@@ -187,7 +194,7 @@
 				</div> <!-- End of Modal -->
 
 				<!-- MODAL AREA -->
-			    <div class="modal fade" id="saveNarrativeModal" role="dialog">
+			    <div class="modal fade" id="narrative-confirmation-modal" role="dialog">
 			    	<div class="modal-dialog modal-md">
 			            <!-- Modal content-->
 			            <div class="modal-content">
@@ -202,31 +209,30 @@
 			              		<p id="change_message">
 			              			Do you want to save all the changes you made for this event before moving to a new event?
 			              		</p>
-			              		<span style="color:red;"><strong>Notice:</strong> Once saved, you can only edit previous entries!</span>
 			              	</div>
 			              	<div class="modal-footer" id="modalFooter">
-			              		<button id="cancel" class="btn btn-info" data-dismiss="modal" role="button">Cancel</button>
-			              		<button id="discard" class="btn btn-info okay" data-dismiss="modal" role="button">Discard Changes</button>
 			                    <button id="save_narrative" class="btn btn-danger" role="button" type="submit">Save</button>
+			                    <button id="discard" class="btn okay" data-dismiss="modal" role="button">Discard Changes</button>
+			                    <button id="cancel" class="btn" data-dismiss="modal" role="button">Cancel</button>
 			            	</div>
 			            </div>
 			      	</div>
 			    </div> <!-- End of MODAL AREA -->
 
 			    <!-- MODAL AREA -->
-			    <div class="modal fade" id="saveNarrativeSuccess" role="dialog">
+			    <div class="modal fade" id="narrative-success-modal" role="dialog">
 			    	<div class="modal-dialog modal-md">
 			            <!-- Modal content-->
 			            <div class="modal-content">
 			              	<div class="modal-header">
 			                	<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-			                	<h4 class="modal-title" id="modalTitle">Save Narratives</h4>
+			                	<h4 class="modal-title" id="modalTitle">Narrative Modal</h4>
 			              	</div>
 			              	<div class="modal-body" id="modalBody">
-			              		Save success!
+			              		Success!
 			              	</div>
 			              	<div class="modal-footer" id="modalFooter">
-			              		<button id="okay_narrative" class="btn btn-info okay" data-dismiss="modal" role="button">Okay</button>
+			              		<button id="okay_narrative" class="btn okay" data-dismiss="modal" role="button">Okay</button>
 			            	</div>
 			            </div>
 			      	</div>
@@ -370,7 +376,7 @@
 	                    <div class="modal-body">
 	                    </div>
 	                    <div class="modal-footer">
-	                        <button id="okay" class="btn btn-info" data-dismiss="modal" role="button">Okay</button>
+	                        <button id="okay" class="btn" data-dismiss="modal" role="button">Okay</button>
 	                    </div>
 	                </div>
 	            </div>
@@ -399,7 +405,7 @@
             	</div>
             </div>
             <div class="modal-footer">
-                <button id="okay" class="btn btn-info" data-dismiss="modal" role="button" disabled="disabled">Okay</button>
+                <button id="okay" class="btn" data-dismiss="modal" role="button" disabled="disabled">Okay</button>
             </div>
         </div>
     </div>

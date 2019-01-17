@@ -34,12 +34,13 @@ class Monitoring extends CI_Controller
 
 	public function getOnGoingAndExtended () {
 		date_default_timezone_set('Asia/Manila');
-		$events = json_encode($this->monitoring_model->getOnGoingAndExtended());
+		$events = $this->monitoring_model->getOnGoingAndExtended();
+		$events = json_decode(json_encode($events));
 
 		$latest = []; $extended = [];
 		$overdue = [];
 
-		foreach (json_decode($events) as $event) {
+		foreach ($events as $event) {
 			$temp = strtotime($event->data_timestamp);
 			$hour = date("H" , $temp);
 			if ($hour == '23' && (int) date("H" , strtotime($event->release_time)) < 4)
