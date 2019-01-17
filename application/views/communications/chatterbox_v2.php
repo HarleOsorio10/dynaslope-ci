@@ -355,6 +355,10 @@
                                 <ul id="messages" class="chat"></ul>
                             </div>
                             <div style="padding: 15px;">
+                                <button type="button" class="btn btn-primary btn-xs" id="open-call-log">
+                                <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> 
+                                    Add call log
+                                </button><br><br>
                                 <textarea id="msg" name="msg" class="form-control" rows="5"></textarea>
                             </div>
                             <div class="row">
@@ -1315,7 +1319,7 @@
                             <div class="col-md-12">
                                 <div class="alert alert-info" role="alert">
                                     <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 
-                                    Multiple contact detected on user site. Do you want to check and edit ?<br>
+                                    There's already a assigned priority on this contact, do you want to change it?<br>
                                     <button type="button" class="btn btn-primary btn-xs" id="edit-priorities">Yes</button>
                                     <button type="button" class="btn btn-primary btn-xs" id="cancel-priorities">No</button>
                                 </div>
@@ -1488,6 +1492,38 @@
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" id="save-narrative">Confirm</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="call-log-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <form id="call-log-form">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Call Log</h4>
+          </div>
+          <div class="modal-body">
+                <div class="form-group hideable">
+                    <label class="control-label" for="data_timestamp"> Timestamp</label>
+                    <div class="input-group date datetime">
+                        <input type="text" class="form-control" id="data_timestamp" name="timestamp" placeholder="Enter timestamp" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group hideable">
+                    <label class="control-label" for="data_timestamp">Call Log Message</label>
+                    <textarea id="call_log_message" name="call_log_message" class="form-control" rows="5"></textarea>
+                </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="save-call-log">Save</button>
+          </div>
+        </form>
     </div>
   </div>
 </div>
