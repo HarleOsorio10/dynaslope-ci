@@ -13,6 +13,8 @@
 			$this->load->model('public_alert_trigger_model');
 			$this->load->model('narratives_model');
 			$this->load->model('eos_data_analysis_model');
+			$this->load->model('monitoring_model');
+			$this->load->model('sites_model');
 		}
 
 		public function index()
@@ -24,11 +26,48 @@
 			$data['last_name'] = $this->session->userdata('last_name');
 			
 			$data['title'] = "Monitoring Report Form and Generator";
-			$data['withAlerts'] = json_encode($this->accomplishment_model->getSitesWithAlerts());
+			$data['sites'] = $this->processSitesForNarrativeForm();
+
 			$this->load->view('templates/beta/header', $data);
 			$this->load->view('templates/beta/nav');
 			$this->load->view('reports/monitoring_report', $data);
 			$this->load->view('templates/beta/footer');
+		}
+
+		public function processSitesForNarrativeForm () {
+			$with_alerts = $this->monitoring_model->getOnGoingAndExtended();
+			$sites = $this->sites_model->getCompleteSiteInformation();
+
+			$site_ids = [];
+			foreach ($with_alerts as $key => $entry) {
+				array_push($site_ids, $entry['site_id']);
+			}
+
+			$filtered = array_filter($sites, function ($entry) use ($site_ids) {
+				return !in_array($entry->site_id, $site_ids);
+			});
+
+			$merged = array_merge($with_alerts, $filtered);
+			return json_decode(json_encode($merged));
+		}
+
+		function fill_narrative_site () {
+			$arr = $this->accomplishment_model->getEventIdOnNarrative();
+			// var_dump($arr);
+			$event_ids = array_column($arr, "event_id");
+			foreach ($event_ids as $id) {
+				$event = $this->public_alert_event_model->getEventWithSiteDetails($id);
+				if (count($event) > 0) {
+					$site_id = $event[0]->site_id;
+					var_dump($site_id);
+
+					$data = array(
+						'site_id' => $site_id
+					);
+
+					$id = $this->api_model->update('event_id', $id, 'narratives', $data);
+				}
+			}
 		}
 
 		public function checker()
@@ -61,10 +100,14 @@
 		public function getNarratives($event_id = null)
 		{
 			$event_ids = [];
+			
+			// Check if getting narrative from single event id only
 			if( $event_id == null ) $event_ids = $_GET['event_ids'];
 			else array_push($event_ids, $event_id);
 
-			$data = $this->accomplishment_model->getNarratives($event_ids);
+			$site_ids = isset($_GET['site_ids']) ? $_GET['site_ids'] : null; 
+
+			$data = $this->narratives_model->getNarratives($event_ids, $site_ids);
 			echo json_encode($data);
 		}
 
@@ -191,38 +234,40 @@
 			echo json_encode($data);
 		}
 
-		public function insertNarratives()
-		{
+		public function insertNarratives () {
 			$narratives = $_POST['narratives'];
 			$narratives = json_decode($narratives);
 			$forUpdate = [];
 			$forInsert = [];
-			foreach ($narratives as $x) 
-			{
-				unset($x->name);
+			foreach ($narratives as $x) {
+				unset($x->site_code);
 				if(!isset($x->id)) array_push($forInsert, $x);
-				else if(isset($x->isEdited))
-				{
+				else if(isset($x->isEdited)) {
 					unset($x->isEdited);
 					array_push($forUpdate, $x);
 				}
 			}			
-			if(count($forInsert) > 0)
-			{
+			
+			if(count($forInsert) > 0) {
 				foreach ($forInsert as $x) {
+					if (isset($x->event_id)) {
+						if (!isset($x->site_id)) {
+							$obj = $this->public_alert_event_model->getEventDetails($x->event_id);
+							$x->site_id = $obj->site_id;
+						}
+					}
 					echo $this->api_model->insert('narratives', $x);
 				}
 			}
-			if(count($forUpdate) > 0)
-			{
+			
+			if(count($forUpdate) > 0) {
 				foreach ($forUpdate as $x) {
 					$this->api_model->update('id', $x->id, 'narratives', $x);
 				}
 			}
 		}
 
-		public function deleteNarrative()
-		{
+		public function deleteNarrative () {
 			$data = array( 'id' => $_POST['narrative_id'] );
 			$this->api_model->delete('narratives', $data);
 		}

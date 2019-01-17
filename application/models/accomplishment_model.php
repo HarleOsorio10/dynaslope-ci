@@ -27,27 +27,14 @@ class Accomplishment_Model extends CI_Model
 		return $result;
 	}
 
-	public function getSitesWithAlerts() {
-		$this->db->select('public_alert_event.*, sites.*, sites.site_code AS name');
-		$this->db->from('public_alert_event');
-		$this->db->join('sites', 'public_alert_event.site_id = sites.site_id');
-		$this->db->where('status', 'on-going');
-		$this->db->or_where('status', 'extended');
-		$query = $this->db->get();
-		return $query->result_object();
-	}
+	public function getEventIdOnNarrative () {
+        $query = $this->db->select("event_id")
+        ->from("narratives")
+        ->group_by("event_id")
+        ->get();
 
-	public function getNarratives($event_id) {
-		$this->db->select("narratives.*, sites.site_code AS name");
-		$this->db->from("narratives");
-		$this->db->join("public_alert_event", "public_alert_event.event_id = narratives.event_id" );
-		$this->db->join("sites", "public_alert_event.site_id = sites.site_id");
-		$this->db->where_in('narratives.event_id', $event_id);
-		$query = $this->db->get();
-		$result = $query->result_array();
-		return $result;
-	}
-	
+        return $query->result_array();
+    }
 }
 
 ?>
