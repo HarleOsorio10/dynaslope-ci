@@ -20,6 +20,21 @@ class Narratives_model extends CI_Model {
         return $result;
     }
 
+    public function getNarratives ($event_id, $site_id = null) {
+        $this->db->select("narratives.*, sites.site_code");
+        $this->db->from("narratives");
+        $this->db->join("sites", "narratives.site_id = sites.site_id");
+        $this->db->where_in('narratives.event_id', $event_id);
+
+        if (!is_null($site_id)) {
+            $this->db->or_where_in("narratives.site_id", $site_id);
+            $this->db->where("narratives.event_id", NULL);
+        }
+
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
 }
 
 ?>
