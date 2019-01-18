@@ -13,7 +13,12 @@
      
  -->
 
+<!--LOUIE - I-localize ang files bago magpush -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowgroup/1.0.4/css/rowGroup.dataTables.min.css"> 
+<script type="text/javascript" src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
+
 <script type="text/javascript" src="<?php echo base_url(); ?>js/dewslandslide/reports/accomplishment_checker.js"></script>
+
 
 <style type="text/css">
     .v-middle { vertical-align: middle !important; }
