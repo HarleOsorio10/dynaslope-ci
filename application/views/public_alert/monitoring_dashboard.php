@@ -1,9 +1,9 @@
-<!--
-    Created by: Kevin Dhale dela Cruz
+
+<!--     Created by: Kevin Dhale dela Cruz
     A view page for monitoring sites with alerts; 
     acts as a homepage
-    Linked at [host]/home or [host]/dashboard 
- -->
+    Linked at [host]/home or [host]/dashboard  -->
+
 
 <link rel="stylesheet" type="text/css" href="css/dewslandslide/public_alert/monitoring_dashboard.css">
 <script src="<?php echo base_url();?>js/dewslandslide/public_alert/dashboard_server.js"></script>
@@ -21,6 +21,8 @@
 
 <script type="text/javascript" src="js/dewslandslide/communications_beta/cbx_dashboard.js"></script>
 <script type="text/javascript" src="js/dewslandslide/communications_beta/websocket_server.js"></script>
+<script type="text/javascript" src="js/dewslandslide/communications_beta/event_handler.js"></script>
+<script type="text/javascript" src="/js/dewslandslide/communications_beta/ground_meas.js"></script>
 
 <?php  
 	$sites = json_decode($sites);
@@ -62,6 +64,14 @@
 			    	</div>
 		    	</div>
 
+			</div>
+		</div>
+
+        <div class="row">
+		    <div class="col-sm-12">
+		    	<div id="gndmeas-row" hidden="hidden">
+	    			<button type="button" id="dashboard-gndmeas-settings" class="btn btn-info btn-lg btn-block">Semi-Automated Ground Measurement Reminder</button>
+		    	</div>
 			</div>
 		</div>
 
