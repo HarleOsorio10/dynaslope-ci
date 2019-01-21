@@ -156,11 +156,20 @@
                             <table class="table dataTable" id="releases-table">
                                 <thead>
                                     <tr>
-                                    </tr>                                    
+                                        <th>Date</th>
+                                        <th>Site Code</th>
+                                        <th>EWI Release</th>
+                                        <th>Internal Alert</th>
+                                    </tr>
                                 </thead>
                                 <tfoot>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Site Code</th>
+                                        <th>EWI Release</th>
+                                        <th>Internal Alert</th>
+                                    </tr>                                    
                                 </tfoot>
-                                <tbody></tbody>
                             </table>
                         </div>
                     </div>
