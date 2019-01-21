@@ -355,6 +355,10 @@
                                 <ul id="messages" class="chat"></ul>
                             </div>
                             <div style="padding: 15px;">
+                                <button type="button" class="btn btn-primary btn-xs" id="open-call-log">
+                                <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> 
+                                    Add call log
+                                </button><br><br>
                                 <textarea id="msg" name="msg" class="form-control" rows="5"></textarea>
                             </div>
                             <div class="row">
@@ -1271,7 +1275,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group hideable">
                             <label class="control-label" for="birthdate_cc">Birthdate</label>
                             <div class="input-group date datetime">
@@ -1283,7 +1287,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group hideable">
                             <label class="control-label" for="active_status_cc">Contact Active Status</label>
                             <select class="form-control" id="active_status_cc" name="active_status_cc">
@@ -1293,14 +1297,51 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group hideable">
-                            <label class="control-label" for="ewirecipient_cc">Early Warning Information Recipient:</label>
+                            <label class="control-label" for="ewirecipient_cc">EWI Recipient:</label>
                             <select class="form-control" id="ewirecipient_cc" name="ewirecipient_cc">
                                 <option value="1">Yes</option>
                                 <option value="0">No</option>
                             </select>
                         </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group hideable">
+                            <label class="control-label" for="contact_priority">Contact Priority</label>
+                            <input type="number" class="form-control" id="contact_priority" name="contact_priority" placeholder="Contact Priority" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="contact-priority-panel" hidden>
+                    <div class="col-md-12">
+                        <div class="row" id="contact-priority-alert-message" hidden>
+                            <div class="col-md-12">
+                                <div class="alert alert-info" role="alert">
+                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                    There's already a assigned priority on this contact, do you want to change it?<br>
+                                    <button type="button" class="btn btn-primary btn-xs" id="edit-priorities">Yes</button>
+                                    <button type="button" class="btn btn-primary btn-xs" id="cancel-priorities">No</button>
+                                </div>
+                            </div>    
+                        </div>
+                        
+                        <table class="table" id="contact-hierarchy-table-container" hidden>
+                            <thead>
+                                <tr>
+                                    <th>Site / Org</th>
+                                    <th>Name</th>
+                                    <th>Priority</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contact-hierarchy-table">
+                                <tr>
+                                    <td>Site / Org</td>
+                                    <td>Name</td>
+                                    <td>Priority</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -1451,6 +1492,38 @@
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" id="save-narrative">Confirm</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="call-log-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <form id="call-log-form">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Call Log</h4>
+          </div>
+          <div class="modal-body">
+                <div class="form-group hideable">
+                    <label class="control-label" for="data_timestamp"> Timestamp</label>
+                    <div class="input-group date datetime">
+                        <input type="text" class="form-control" id="data_timestamp" name="timestamp" placeholder="Enter timestamp" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group hideable">
+                    <label class="control-label" for="data_timestamp">Call Log Message</label>
+                    <textarea id="call_log_message" name="call_log_message" class="form-control" rows="5"></textarea>
+                </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="save-call-log">Save</button>
+          </div>
+        </form>
     </div>
   </div>
 </div>
