@@ -116,7 +116,7 @@ class Pubrelease_Model extends CI_Model
 			$this->db->select("public_alert_manifestation.*, manifestation_features.feature_type, manifestation_features.feature_name");
 			$this->db->from("public_alert_manifestation");
 			$this->db->join("manifestation_features", "public_alert_manifestation.feature_id = manifestation_features.feature_id");
-			$this->db->where( array('public_alert_manifestation.release_id' => $release->release_id, 'public_alert_manifestation.op_trigger' => 0) );
+			$this->db->where("public_alert_manifestation.release_id", $release->release_id);
 			$query = $this->db->get();
 			$releases[$i]->extra_manifestations = $query->result_object();
 			$i++;
