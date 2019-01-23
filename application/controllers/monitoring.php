@@ -29,6 +29,7 @@ class Monitoring extends CI_Controller
 		$this->load->view('templates/beta/header', $data);
         $this->load->view('templates/beta/nav');
 		$this->load->view('public_alert/monitoring_dashboard', $data);
+		$this->load->view('communications/ground_meas_automation');
         $this->load->view('templates/beta/footer');
 	}
 
