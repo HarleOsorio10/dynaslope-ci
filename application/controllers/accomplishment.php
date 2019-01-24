@@ -90,6 +90,11 @@
 			echo json_encode($data);
 		}
 
+		public function getReleasesByStaff($staff_id, $start = null, $end = null) {
+			$data = $this->accomplishment_model->getReleasesByStaff($staff_id, $start, $end);
+			echo json_encode($data);
+		}
+
 		public function getShiftTriggers()
 		{
 			$data['shiftTriggers'] = $shift = $this->public_alert_trigger_model->getShiftTriggers($_GET['releases']);
