@@ -80,7 +80,7 @@ class Accomplishment_Model extends CI_Model
 			inner join
 				sites
 			using (site_id)
-			where (status != 'extended' and status != 'routine')
+			where (status != 'routine')
 		";
 
         $result = $this->db->query($sql);
