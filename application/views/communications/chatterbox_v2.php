@@ -374,7 +374,7 @@
                                 <button type="button" class="btn btn-primary" id="send-msg">Send Message</button>
                                 <br>
                                 <br>
-                                <a data-target="#" id="btn-ewi" data-toggle="modal" data-dismiss="modal">Load Message Templates</a>
+                                <a id="btn_ewi" data-toggle="modal" data-dismiss="modal">Load Message Templates</a>
                             </div>
                         </div>
                     </div>
@@ -1331,7 +1331,7 @@
             </div>
             <div class="col-sm-offset-4 col-sm-4" id="gintag_warning_message" hidden>
                 <div class="alert alert-info" role="alert">
-                    <b>This field is required</b>
+                    <b id="gintag_warning_message_text">This field is required</b>
                 </div>
             </div>
         </div>
