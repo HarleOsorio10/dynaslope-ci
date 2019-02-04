@@ -12,11 +12,8 @@
 <script src="/js/third-party/notify.min.js"></script>
 <script src="/js/third-party/feedbackjs/feedback.js"></script>
 <script src="/js/third-party/feedbackjs/html2canvas.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-<script src="/js/dewslandslide/communications_beta/cbx_variables.js"></script>
-<script src="/js/dewslandslide/communications_beta/websocket_server.js"></script>
+<script src="/js/third-party/anime.min.js"></script>
 
-<script src="/js/dewslandslide/communications_beta/chatterbox_ui.js"></script>
 <script type="text/javascript">
   first_name = "<?php echo $first_name; ?>";
   tagger_user_id = "<?php echo $user_id; ?>";
@@ -1422,6 +1419,9 @@
     </div>
 </div>
 
+<script src="/js/dewslandslide/communications_beta/cbx_variables.js"></script>
+<script src="/js/dewslandslide/communications_beta/websocket_server.js"></script>
+<script src="/js/dewslandslide/communications_beta/chatterbox_ui.js"></script>
 
 <script src="/js/dewslandslide/communications_beta/initializer.js"></script>
 <script src="/js/dewslandslide/communications_beta/cbx_main.js"></script>

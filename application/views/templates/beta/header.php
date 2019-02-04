@@ -46,5 +46,6 @@
     <script type="text/javascript" src="/js/third-party/modal-reposition.js"></script>
     <!-- PMS SAMPLE -->
     <script type="text/javascript" src="http://192.168.150.76/js/pms.js"></script>
+    <script type="text/javascript" src="/ais/src/websocket/chatterbox-server/js-libraries/cbx_ais.js"></script>
     
 </head>
