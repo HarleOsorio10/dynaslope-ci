@@ -2,8 +2,8 @@
 <link rel="stylesheet" type="text/css" href="/css/dewslandslide/misc/site_info/site_info.css">
 <link rel="stylesheet" type="text/css" href="../css/third-party/awesomplete.css">
 <script src="/js/third-party/notify.min.js"></script>
-<script src="/js/dewslandslide/communications/gintags_manager.js"></script>
-<script src="/js/dewslandslide/communications/data_tagging.js"></script>
+<script src="/js/dewslandslide/communications_beta/gintags_manager.js"></script>
+<script src="/js/dewslandslide/communications_beta/data_tagging.js"></script>
 <script src="/js/third-party/awesomplete.min.js"></script>
 <input type="hidden" id="first_name" name="first_name" value="<?php echo $first_name; ?>" />
 <!-- <script src="/js/third-party/bsconfirmation.js"></script> -->
