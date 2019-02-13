@@ -263,7 +263,7 @@ class Pubrelease extends CI_Controller {
 				if (isset($_POST['extend_ND']) || isset($_POST['extend_rain_x'])) {
 		    			$update_event_tbl["validity"] = date("Y-m-d H:i:s", strtotime($event_validity) + 4 * 3600);
 				} else {
-					$return_arr = $this->saveTriggers($_POST, $event_id, $release_id, $event_validity);
+					$return_arr = $this->saveTriggers($_POST, $site_id, $event_id, $release_id, $event_validity);
 					$update_event_tbl = array_merge($update_event_tbl, $return_arr);
 				}
 			}
@@ -348,7 +348,7 @@ class Pubrelease extends CI_Controller {
 		return $timestamp;
 	}
 
-	public function saveTriggers($post, $event_id, $release_id, $event_validity) {
+	public function saveTriggers($post, $site_id, $event_id, $release_id, $event_validity) {
 		$lookup = array( "g" => "trigger_surficial_1", "G" => "trigger_surficial_2", "s" => "trigger_subsurface_1", "S" => "trigger_subsurface_2", "m" => "trigger_manifestation", "M" => "trigger_manifestation", "R" => "trigger_rainfall", "E" => "trigger_eq", "D" => "trigger_od" );
 		$list = [];
 		$return_data = [];
@@ -382,13 +382,20 @@ class Pubrelease extends CI_Controller {
 					$eq['longitude'] = $post['longitude'];
 					$this->api_model->insert('public_alert_eq', $eq);
 				} else if( $entry['type'] == "D" ) {
+					// trigger_od
 					$od['trigger_id'] = $latest_trigger_id;
+					$timestamp = $post['trigger_od'];
+					$od['ts'] = $timestamp;
 					$od['is_llmc'] = isset($post['llmc']) ? true : false;
 					$od['is_lgu'] = isset($post['lgu']) ? true : false;
 					$od['reason'] = $post['reason'];
 					$this->api_model->insert('public_alert_on_demand', $od);
+
+					$this->saveToOperationalTriggers("od", $timestamp, $site_id, $entry['type']);
 				} else if( strtoupper($entry['type']) == "M" ) {	
 					$this->saveManifestation($post['feature_groups'], "feature_groups", $post, $release_id, $entry['type']);
+
+					$this->saveToOperationalTriggers("moms", $timestamp, $site_id, $entry['type']);
 				}
 			}
 
@@ -409,6 +416,41 @@ class Pubrelease extends CI_Controller {
 		}
 
 		return $return_data;
+	}
+
+	public function saveToOperationalTriggers ($source_function, $timestamp, $site_id, $trigger_type = null) { // LOUIE
+		$op_trigger['ts'] = $timestamp;
+		$op_trigger['site_id'] = $site_id;
+		$op_trigger['trigger_sym_id'] = $this->identifyTriggerSymID($source_function, $trigger_type);
+		$op_trigger['ts_updated'] = $timestamp;
+
+		// var_dump($trigger_type);
+		// var_dump($op_trigger);
+		$this->api_model->insert('operational_trigger', $op_trigger);
+	}
+
+	public function identifyTriggerSymID ($source_function, $trigger_type) {
+		if($source_function == "moms") {
+			switch ($trigger_type) {
+			    case "m":
+			        $sym_id = 10;	// As of development, alert symbol 'M2' for on moms A2 alerts
+			        break;
+			    case "M":
+			        $sym_id = 17;	// As of development, alert symbol 'M3' for on moms A3 alerts
+			        break;
+			    case "m0":
+			        $sym_id = 18;	// As of development, alert symbol 'M0' for on moms A0 alerts
+			        break;
+			    default:
+			    	$sym_id = 19;	// As of development, alert symbol 'ND' for on no moms data
+			}
+		} else if ($source_function == "od") {
+			$sym_id = 16; // As of development, alert symbol 'd1' for on demand alerts
+		} else {
+			$sym_id = "";
+		}
+
+		return $sym_id;
 	}
 
 	public function saveManifestation ($group, $group_name, $post, $release_id = null, $trigger = 1)

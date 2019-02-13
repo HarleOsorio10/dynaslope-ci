@@ -258,7 +258,7 @@ class Test_scripts extends CI_Controller {
 			$release_id = $this->api_model->insert('public_alert_release', $release);
 			$this->pubrelease_model->update('event_id', $event_id, 'public_alert_event', array('latest_release_id' => $release_id) );
 
-			$this->saveTriggers($post, $event_id, $release_id, $event_validity);
+			$this->saveTriggers($post, $site_id, $event_id, $release_id, $event_validity);
 
 			// This $event_id came from EXTENDED to NEW event
 			if( isset($post['previous_event_id']) && $post['previous_event_id'] != NULL &&  $post['previous_event_id'] != '' ) $this->pubrelease_model->update('event_id', $post['previous_event_id'], 'public_alert_event', array( 'status' => 'finished' ));
@@ -288,7 +288,7 @@ class Test_scripts extends CI_Controller {
     			$data['validity'] = date("Y-m-d H:i:s", strtotime($event_validity) + 4 * 3600);
     			$this->pubrelease_model->update('event_id', $event_id, 'public_alert_event', $data);
 			}
-			else $this->saveTriggers($post, $event_id, $release_id, $event_validity);
+			else $this->saveTriggers($post, $site_id, $event_id, $release_id, $event_validity);
 
 			if($status == 'extended' || $status == 'invalid' || $status == 'finished')
 			{
@@ -416,7 +416,7 @@ class Test_scripts extends CI_Controller {
 		return $timestamp;
 	}
 
-	public function saveTriggers($post, $event_id, $release_id, $event_validity)
+	public function saveTriggers($post, $site_id, $event_id, $release_id, $event_validity)
 	{
 		$lookup = array( "g" => "trigger_ground_1", "G" => "trigger_ground_2", "s" => "trigger_sensor_1", "S" => "trigger_sensor_2", "R" => "trigger_rain", "E" => "trigger_eq", "D" => "trigger_od" );
 		$list = [];
