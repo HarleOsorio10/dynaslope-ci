@@ -382,7 +382,6 @@ class Pubrelease extends CI_Controller {
 					$eq['longitude'] = $post['longitude'];
 					$this->api_model->insert('public_alert_eq', $eq);
 				} else if( $entry['type'] == "D" ) {
-					// trigger_od
 					$od['trigger_id'] = $latest_trigger_id;
 					$timestamp = $post['trigger_od'];
 					$od['ts'] = $timestamp;
@@ -390,12 +389,16 @@ class Pubrelease extends CI_Controller {
 					$od['is_lgu'] = isset($post['lgu']) ? true : false;
 					$od['reason'] = $post['reason'];
 					$this->api_model->insert('public_alert_on_demand', $od);
-
+					// Automatically save to operational_trigger table
 					$this->saveToOperationalTriggers("od", $timestamp, $site_id, $entry['type']);
 				} else if( strtoupper($entry['type']) == "M" ) {	
 					$this->saveManifestation($post['feature_groups'], "feature_groups", $post, $release_id, $entry['type']);
-
-					$this->saveToOperationalTriggers("moms", $timestamp, $site_id, $entry['type']);
+					
+					// If there is MOMS data, do this
+					if($entry['type'] != "m0") {
+						$observance_timestamp = $post['observance_timestamp'];
+						$this->saveToOperationalTriggers("moms", $observance_timestamp, $site_id, $entry['type']);
+					}
 				}
 			}
 
@@ -418,17 +421,19 @@ class Pubrelease extends CI_Controller {
 		return $return_data;
 	}
 
-	public function saveToOperationalTriggers ($source_function, $timestamp, $site_id, $trigger_type = null) { // LOUIE
+	// Save On-Demand and MOMs to Operational Triggers table. 
+	public function saveToOperationalTriggers ($source_function, $timestamp, $site_id, $trigger_type = null) {
 		$op_trigger['ts'] = $timestamp;
-		$op_trigger['site_id'] = $site_id;
+		$op_trigger['site_id'] = (int) $site_id;
 		$op_trigger['trigger_sym_id'] = $this->identifyTriggerSymID($source_function, $trigger_type);
 		$op_trigger['ts_updated'] = $timestamp;
 
 		// var_dump($trigger_type);
 		// var_dump($op_trigger);
-		$this->api_model->insert('operational_trigger', $op_trigger);
+		$this->api_model->insert('operational_triggers', $op_trigger);
 	}
 
+	// Identify trigger_sym_id for On-Demand and MOMs
 	public function identifyTriggerSymID ($source_function, $trigger_type) {
 		if($source_function == "moms") {
 			switch ($trigger_type) {
