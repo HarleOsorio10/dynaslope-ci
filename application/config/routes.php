@@ -124,7 +124,7 @@ $route['analysis/manifestations'] = "manifestations";
 $route['analysis/manifestations/(:any)'] = "manifestations/individual_site/$1";
 $route['analysis/surficial'] = "surficial";
 $route['analysis/rainfall_summary'] = "rainfall_scanner";
-
+$route['analysis/earthquake_summary'] = "earthquake_scanner";
 /**
  * Data Analysis Pages Routes
  */
