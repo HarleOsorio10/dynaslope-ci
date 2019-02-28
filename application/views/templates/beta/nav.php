@@ -48,6 +48,7 @@
 		                    <a href="<?php echo base_url(); ?>analysis/site_analysis">Integrated Site Analysis</a>
 		                    <a href="<?php echo base_url(); ?>analysis/sensor_overview">Dataloggers and Sensors Overview</a>
 		                    <a href="<?php echo base_url(); ?>analysis/rainfall_summary">Rainfall Summary</a>
+							<a href="<?php echo base_url(); ?>analysis/earthquake_summary">Earthquake Summary</a>
 		                    <a href="<?php echo base_url(); ?>analysis/surficial">Surficial Markers Info</a>
 		                    <a href="<?php echo base_url(); ?>analysis/manifestations">Manifestations of Movement Table</a>
 		                    <hr class="divider" />
