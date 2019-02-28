@@ -29,7 +29,7 @@ crossorigin=""></script>
             </div>
             <div class="col-lg-6">
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Last Recent Events</div>
+                    <div class="panel-heading">Earthquake Events</div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
@@ -42,7 +42,7 @@ crossorigin=""></script>
                                                 <th>Distance</th>
                                                 <th>Latitude</th>
                                                 <th>Longitude</th>
-                                                <th>Near By Site</th>
+                                                <th>Nearby Site</th>
                                             </tr>
                                         </thead>
                                     </table>
