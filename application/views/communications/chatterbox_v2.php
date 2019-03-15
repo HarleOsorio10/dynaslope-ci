@@ -1027,8 +1027,11 @@
 
                     <div class="col-md-2">
                         <div class="form-group hideable">
-                            <label class="control-label" for="gender_ec">Gender</label>
-                                <input type="text" class="form-control" id="gender_ec" name="gender_ec" placeholder="Enter gender" />
+                            <label class="control-label" for="gender_ec">Sex</label>
+                            <select class="form-control" id="gender_ec" name="gender_ec">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
                         </div>
                     </div>
 
@@ -1142,8 +1145,11 @@
 
                     <div class="col-md-4">
                         <div class="form-group hideable">
-                            <label class="control-label" for="gender_cc">Gender</label>
-                                <input type="text" class="form-control" id="gender_cc" name="gender_cc" placeholder="Enter gender" />
+                            <label class="control-label" for="gende_cc">Sex</label>
+                            <select class="form-control" id="gende_cc" name="gende_cc">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
                         </div>
                     </div>
                 </div>
