@@ -736,8 +736,11 @@
 
                             <div class="col-md-2">
                                 <div class="form-group hideable">
-                                    <label class="control-label" for="emp_unregistered_gender">Gender</label>
-                                        <input type="text" class="form-control" id="emp_unregistered_gender" name="emp_unregistered_gender" placeholder="Enter gender" />
+                                    <label class="control-label" for="emp_unregistered_gender">Sex</label>
+                                    <select class="form-control" id="emp_unregistered_gender" name="emp_unregistered_gender">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>    
                                 </div>
                             </div>
 
@@ -845,8 +848,11 @@
 
                             <div class="col-md-4">
                                 <div class="form-group hideable">
-                                    <label class="control-label" for="comm_unregistered_gender">Gender</label>
-                                        <input type="text" class="form-control" id="comm_unregistered_gender" name="comm_unregistered_gender" placeholder="Enter gender" />
+                                    <label class="control-label" for="comm_unregistered_gender">Sex</label>
+                                    <select class="form-control" id="comm_unregistered_gender" name="comm_unregistered_gender">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>    
                                 </div>
                             </div>
                         </div>
@@ -1145,8 +1151,8 @@
 
                     <div class="col-md-4">
                         <div class="form-group hideable">
-                            <label class="control-label" for="gende_cc">Sex</label>
-                            <select class="form-control" id="gende_cc" name="gende_cc">
+                            <label class="control-label" for="gender_cc">Sex</label>
+                            <select class="form-control" id="gender_cc" name="gender_cc">
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
