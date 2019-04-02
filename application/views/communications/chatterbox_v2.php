@@ -738,8 +738,8 @@
                                 <div class="form-group hideable">
                                     <label class="control-label" for="emp_unregistered_gender">Sex</label>
                                     <select class="form-control" id="emp_unregistered_gender" name="emp_unregistered_gender">
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
                                     </select>    
                                 </div>
                             </div>
@@ -850,8 +850,8 @@
                                 <div class="form-group hideable">
                                     <label class="control-label" for="comm_unregistered_gender">Sex</label>
                                     <select class="form-control" id="comm_unregistered_gender" name="comm_unregistered_gender">
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
                                     </select>    
                                 </div>
                             </div>
@@ -1035,8 +1035,8 @@
                         <div class="form-group hideable">
                             <label class="control-label" for="gender_ec">Sex</label>
                             <select class="form-control" id="gender_ec" name="gender_ec">
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
                             </select>
                         </div>
                     </div>
@@ -1153,8 +1153,8 @@
                         <div class="form-group hideable">
                             <label class="control-label" for="gender_cc">Sex</label>
                             <select class="form-control" id="gender_cc" name="gender_cc">
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
                             </select>
                         </div>
                     </div>
