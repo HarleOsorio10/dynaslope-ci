@@ -13,9 +13,8 @@
      
  -->
 
-<!--LOUIE - I-localize ang files bago magpush -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowgroup/1.0.4/css/rowGroup.dataTables.min.css"> 
-<script type="text/javascript" src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/third-party/rowGroup.dataTables.min.css"> 
+<script type="text/javascript" src="<?php echo base_url(); ?>js/third-party/dataTables.rowGroup.min.js"></script>
 
 <script type="text/javascript" src="<?php echo base_url(); ?>js/dewslandslide/reports/accomplishment_checker.js"></script>
 
