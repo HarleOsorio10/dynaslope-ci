@@ -41,6 +41,7 @@
 			$this->db->select("number_of_segments AS node_count");
 			$this->db->from("tsm_sensors");
 			$this->db->where("tsm_name", $site_column);
+			$this->db->where("date_deactivated", NULL);
 			$data = $this->db->get();
 			return ($data->num_rows() === 0) ? 0 : $data->row()->node_count;
 		}
