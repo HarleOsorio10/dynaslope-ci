@@ -47,6 +47,7 @@
 			$this->db->select("version")
 				->from("tsm_sensors")
 				->where("tsm_name", $site_column);
+				->where("date_deactivated", NULL);
 			$data = $this->db->get();
 			return $data->row()->version;
 		}
