@@ -464,6 +464,7 @@
                         <select name="" id="rainfall-sites" class="form-control">
                             <option value="#" default>---</option>
                             <option value="SAMAR-SITES">Samar Sites</option>
+                            <option value="BENGUET-SITES">Benguet Sites</option>
                         </select>
                       </div>
                   </div>
